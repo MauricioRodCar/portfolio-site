@@ -1,6 +1,10 @@
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
+import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 
 export function Nav() {
+  const t = useTranslations("nav");
+
   return (
     <header className="sticky top-0 z-10 border-b border-border bg-background/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
@@ -12,16 +16,17 @@ export function Nav() {
             href="#work"
             className="font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent"
           >
-            How I Think
+            {t("work")}
           </a>
           <a
             href="#stack"
             className="font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent"
           >
-            Stack
+            {t("stack")}
           </a>
+          <LocaleSwitcher />
           <Button href="#contact" variant="outline" className="px-3 py-1.5">
-            Contact
+            {t("contact")}
           </Button>
         </div>
       </nav>
