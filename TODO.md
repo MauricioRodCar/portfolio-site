@@ -32,6 +32,16 @@ Living log of deferred decisions and pending work. Updated any time something fa
 - [x] Verified with Playwright (desktop + real mobile viewport, touch tap): editing code, running it, editing the simulated model output, and a broken-code error path all work; no console errors.
 - [x] **Bug found and fixed during mobile testing:** `body` is a column flex container (`min-h-full flex flex-col`, needed for Hero's `flex-1`), and the four `mx-auto max-w-5xl` sections (CaseStudies, Playground, Stack, Contact) are its flex items. `mx-auto` (auto margins) on a flex item disables cross-axis stretch, so each section sized itself to its widest unwrapped content (the code editor's longest line) instead of the viewport — causing page-wide horizontal scroll on mobile. Fixed by adding `w-full` to all four sections' `max-w-5xl` wrapper, plus a defensive `body > * { min-width: 0; }` in `globals.css` for the general flex-column-body pattern. Worth remembering for any future section added the same way.
 
+## Phase 3.5 — Playground "easy mode" (deferred, not scheduled)
+Feedback from Mauricio after testing Phase 3 (2026-08-06): the raw-code editor works well but is hard for a non-technical visitor (a recruiter, say) to actually try — they don't know what to type as "model output." Not blocking, current form stays as-is; this is a future enhancement, not part of any phase yet.
+
+- [ ] Add an optional guided/no-code mode alongside the existing code editor — must be purely additive, the current "edit the raw code" experience stays exactly as it is today for anyone who wants it.
+- [ ] Guided mode: a dropdown/selector listing the available tools by name (e.g. `get_weather`, `convert_currency`).
+- [ ] Selecting a tool renders form inputs matching that tool's parameters (e.g. `city` for `get_weather`; `amount`, `from`, `to` for `convert_currency`).
+- [ ] Filling in those inputs generates the simulated "model output" JSON live, replacing the manual JSON string currently required in the model-output field.
+- [ ] Stretch goal: scan the (possibly user-edited) code in the editor and auto-detect any new tools the visitor adds, adding them to the guided-mode dropdown automatically if their structure matches the expected `{ name, description, execute }` shape. Needs a static-analysis approach (e.g. parse the `tools` array literal) rather than executing arbitrary code just to introspect it.
+- [ ] Some form of in-playground documentation/tutorial explaining how to use it (both modes) — exact form (tooltip, inline help panel, short walkthrough) not decided yet.
+
 ## Phase 4 — Polish and performance
 - [ ] Full Lighthouse audit (target: Performance ≥ 90, LCP < 2s, no noticeable layout shift).
 - [ ] Basic accessibility review (contrast, keyboard navigation).
