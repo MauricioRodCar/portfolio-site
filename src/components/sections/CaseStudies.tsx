@@ -9,7 +9,7 @@ export function CaseStudies() {
   const t = useTranslations("caseStudies");
 
   return (
-    <section id="work" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
+    <section id="work" className="mx-auto w-full max-w-5xl scroll-mt-20 px-6 py-24">
       <Reveal>
         <h2 className="font-mono text-sm uppercase tracking-wide text-accent">
           {t("heading")}

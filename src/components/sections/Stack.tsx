@@ -17,7 +17,7 @@ export function Stack() {
   const t = useTranslations("stack");
 
   return (
-    <section id="stack" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
+    <section id="stack" className="mx-auto w-full max-w-5xl scroll-mt-20 px-6 py-24">
       <Reveal>
         <h2 className="font-mono text-sm uppercase tracking-wide text-accent">
           {t("heading")}

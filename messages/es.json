@@ -4,6 +4,7 @@
   },
   "nav": {
     "work": "Cómo pienso",
+    "playground": "Playground",
     "stack": "Stack",
     "contact": "Contacto"
   },
@@ -32,6 +33,15 @@
       "proseIntro": "El modelo no puede ejecutar nada. Puede pedir. Este es el patrón que traza esa línea — y también es la base del playground de abajo, simplificado para correr completamente en tu navegador.",
       "decision": "Orquestación de tool-calling: al modelo se le da un catálogo fijo de herramientas con nombre, su respuesta se parsea buscando una llamada a herramienta estructurada, y solo el orquestador — nunca el modelo mismo — la ejecuta."
     }
+  },
+  "playground": {
+    "heading": "Pruébalo tú mismo",
+    "subheading": "El patrón de tool-calling del caso de estudio de arriba, en vivo.",
+    "intro": "Edita el código, cambia lo que \"respondió\" el modelo, y ejecútalo — todo corre acá mismo en tu navegador, sin ningún servidor de por medio.",
+    "modelOutputLabel": "Salida del modelo (simulada)",
+    "runCta": "Ejecutar",
+    "errorPrefix": "Error:",
+    "loading": "Cargando playground…"
   },
   "stack": {
     "heading": "Stack",
