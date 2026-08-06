@@ -39,6 +39,8 @@ Living log of deferred decisions and pending work. Updated any time something fa
 ---
 
 ## Decision history for items outside the original brief
-- **Accent color palette:** the brief (section 5) doesn't fix an exact color ("terminal green or cyan, or another"). Decided that Claude Code proposes the final palette within that direction. *(Pending: record the exact value here once defined in Phase 0.)*
-- **GitHub repo:** already exists and is connected — `github.com/MauricioRodCar/portfolio-site`. Phase 0 connects this repo to Vercel for the initial deploy; it doesn't create a new one.
+- **Accent color palette:** the brief (section 5) doesn't fix an exact color ("terminal green or cyan, or another"). Claude Code proposed the final palette within that direction — near-black background (`#0a0a0b`), soft off-white foreground (`#e4e4e7`), single cyan accent (`#22d3ee`). Defined in `src/app/globals.css`.
+- **Tailwind config location:** the brief (section 8, Phase 0) says "color palette in `tailwind.config`," but `create-next-app` scaffolded Tailwind v4, which has no JS config file by default — theme tokens are defined via an `@theme` block in CSS instead. The palette lives in `src/app/globals.css` rather than a `tailwind.config.ts`. Functionally equivalent, just a v4 convention change.
+- **GitHub repo:** already exists and is connected — `github.com/MauricioRodCar/portfolio-site`. Phase 0 connected this repo to Vercel for the initial deploy; it didn't create a new one.
 - **Documentation language:** all project documentation and code comments are now written in English going forward (this file and `CLAUDE.md` were translated from Spanish). Conversation with Mauricio can still happen in Spanish; written repo artifacts are English-only. See the "Project conventions" section at the bottom of `CLAUDE.md`.
+- **Vercel deploy:** live at `https://portfolio-site-omega-ivory.vercel.app/`. Phase 0 "hello world" pipeline validated end-to-end (push to `main` → auto-deploy) on 2026-08-06.
