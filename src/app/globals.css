@@ -44,3 +44,33 @@ body {
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+/*
+  Shiki (server-rendered syntax highlighting, see ui/CodeBlock.tsx) ships its
+  own background — override it so code blocks sit flush with the surrounding
+  Card instead of showing a second, mismatched box. Line numbers are a CSS
+  counter, not part of shiki's own output.
+*/
+.shiki {
+  background: transparent !important;
+  padding: 1rem;
+}
+
+.shiki code {
+  counter-reset: line;
+  display: grid;
+}
+
+.shiki .line {
+  counter-increment: line;
+}
+
+.shiki .line::before {
+  content: counter(line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--muted);
+  user-select: none;
+}

@@ -10,13 +10,17 @@ Living log of deferred decisions and pending work. Updated any time something fa
 - [x] `src/components/ui/`: Button and Tag are wired into the Nav/Hero shell; Card is built but has no consumer yet — it's the base for case-study cards in Phase 2.
 - [x] `src/components/layout/Nav.tsx`: sticky nav shell (brand mark, "How I Think" / "Stack" anchor links, outlined Contact CTA). Not in the original folder proposal — added alongside `ui/` and `sections/` since nav chrome isn't content and isn't a design-system primitive.
 - [x] `src/components/sections/Hero.tsx`: real Hero with the closed copy from section 6.1, plus a `$ whoami` terminal-prompt micro-detail with a blinking cursor (section 5).
-- [ ] Nav's `#work` / `#stack` / `#contact` anchors don't resolve to anything yet — no-op until Phase 2 adds matching section ids.
+- [x] Nav's `#work` / `#stack` / `#contact` anchors now resolve — matching section ids added in Phase 2.
 
 ## Phase 2 — Static content
-- [ ] `src/content/case-studies/`: write the 3 case studies (section 6.2) — optimization under high traffic, multi-repo/DevOps (Octopy), AI agent with Ollama. Snippets written from scratch by Claude Code following the brief's technical specs, never real client code (NDA).
-- [ ] Stack section (6.4) grouped by "what I use it for," not a list of logos.
-- [ ] Contact section (6.5): email, LinkedIn, optional link to CV PDF.
-- [ ] EN/ES internationalization via `next-intl` (section 4). i18n structure is intentionally not set up in Phase 0 or Phase 1, so as not to slow down initial development.
+- [x] `src/content/case-studies/`: all 3 case studies written (section 6.2) — optimization under high traffic, multi-repo/DevOps, AI agent with Ollama. All 3 done now rather than just the first 2, per Mauricio's call — avoids leaving the site in a half-finished state between phases. Snippets written from scratch following the brief's technical specs, no real client code (NDA).
+- [x] Stack section (6.4): used the brief's own example groupings ("iteration speed" → React/TS/Tailwind, "when the project grows" → Node/Express/NestJS/Postgres) as final copy, per Mauricio's call.
+- [x] Contact section (6.5): email (`contact.mauricio.rodriguez@gmail.com`), LinkedIn, and CV PDF link (`/MauricioRodriguez_Resume.pdf`) — all real, provided by Mauricio.
+- [x] Code snippets get real server-rendered syntax highlighting (shiki) with line numbers, per section 5 — no client JS shipped for it, keeps the performance budget intact.
+- [x] Scroll-triggered fade/slide-in animations (Framer Motion) via a shared `Reveal` client wrapper.
+
+## Phase 2.5 — Internationalization (split out, own branch)
+- [ ] EN/ES internationalization via `next-intl` (section 4). The brief places this in Phase 2, but Mauricio chose to split it into its own branch/feature rather than bundle it into the static-content branch — it touches every component already built (locale routing, extracting every string to message files, a language switcher) and is a large enough unit of work to isolate. Decided 2026-08-06.
 
 ## Phase 3 — Interactive playground
 - [ ] Research and implement Sandpack (or an alternative) for the client-side playground (section 6.3).
