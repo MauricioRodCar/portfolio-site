@@ -1,0 +1,44 @@
+# TODO — Pending items by phase
+
+Living log of deferred decisions and pending work. Updated any time something falls outside the scope of the current phase, so it isn't lost and doesn't need to be rediscovered by re-reading the conversation history.
+
+**Convention:** each entry notes which phase resolves it (per section 8 of `CLAUDE.md`) and why it was deferred.
+
+---
+
+## Phase 1 — Layout and design system
+- [ ] `src/components/ui/`: build Button, Card, Tag, and other base design-system components (section 5). In Phase 0 this folder may not exist or may stay empty.
+- [ ] `src/components/sections/`: implement the real Hero with the closed copy from section 6.1. In Phase 0 there's only a minimal placeholder in `page.tsx` to validate the deploy.
+
+## Phase 2 — Static content
+- [ ] `src/content/case-studies/`: write the 3 case studies (section 6.2) — optimization under high traffic, multi-repo/DevOps (Octopy), AI agent with Ollama. Snippets written from scratch by Claude Code following the brief's technical specs, never real client code (NDA).
+- [ ] Stack section (6.4) grouped by "what I use it for," not a list of logos.
+- [ ] Contact section (6.5): email, LinkedIn, optional link to CV PDF.
+- [ ] EN/ES internationalization via `next-intl` (section 4). i18n structure is intentionally not set up in Phase 0 or Phase 1, so as not to slow down initial development.
+
+## Phase 3 — Interactive playground
+- [ ] Research and implement Sandpack (or an alternative) for the client-side playground (section 6.3).
+- [ ] Create `src/components/playground/` when this phase starts — it doesn't exist in the Phase 0 structure.
+- [ ] Integrate a simplified version of snippet 3 (Ollama agent) that runs 100% in the browser, without calling a real Ollama instance.
+- [ ] Validate that the playground loads lazily/deferred so it doesn't impact the rest of the site's performance.
+
+## Phase 4 — Polish and performance
+- [ ] Full Lighthouse audit (target: Performance ≥ 90, LCP < 2s, no noticeable layout shift).
+- [ ] Basic accessibility review (contrast, keyboard navigation).
+- [ ] Meta tags for link previews (LinkedIn/Slack/email), even though the site isn't indexed.
+
+## Phase 5 — Final deploy and domain
+- [ ] Decide whether to buy a custom domain (e.g. `mauriciorodriguez.dev`) or keep the free Vercel subdomain.
+- [ ] Verify the final link looks good embedded as a preview on LinkedIn/Slack/email.
+
+---
+
+## Open decisions not blocking progress
+*(empty for now — all known pending items from the brief are resolved per section 9 of `CLAUDE.md`)*
+
+---
+
+## Decision history for items outside the original brief
+- **Accent color palette:** the brief (section 5) doesn't fix an exact color ("terminal green or cyan, or another"). Decided that Claude Code proposes the final palette within that direction. *(Pending: record the exact value here once defined in Phase 0.)*
+- **GitHub repo:** already exists and is connected — `github.com/MauricioRodCar/portfolio-site`. Phase 0 connects this repo to Vercel for the initial deploy; it doesn't create a new one.
+- **Documentation language:** all project documentation and code comments are now written in English going forward (this file and `CLAUDE.md` were translated from Spanish). Conversation with Mauricio can still happen in Spanish; written repo artifacts are English-only. See the "Project conventions" section at the bottom of `CLAUDE.md`.

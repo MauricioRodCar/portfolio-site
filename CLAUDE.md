@@ -1,159 +1,165 @@
-# Brief de Arquitectura — Portafolio de Mauricio Rodríguez Carballo
+# Architecture Brief — Mauricio Rodríguez Carballo's Portfolio
 
-**Rol de quien lee esto:** Eres el desarrollador (Claude Code) ejecutando este proyecto en VS Code. Este documento es tu especificación de arquitectura, definida junto con Mauricio (dueño del producto) y un Claude actuando como arquitecto de software. No es un CV — es una carta de presentación viva. Sigue las fases en orden; no saltes a implementación de detalle sin cerrar la fase anterior.
-
----
-
-## 1. Objetivo del producto
-
-Sitio personal que funcione como **prueba de habilidad, no como resumen**. El visitante (reclutador técnico, hiring manager, lead) debe:
-1. En los primeros 5-10 segundos, sentir calidad de ejecución (velocidad, diseño, pulido).
-2. En 30-60 segundos, entender qué tipo de problemas resuelve Mauricio y cómo piensa.
-3. Si decide profundizar, poder **ver y tocar código real** — no solo leer sobre él.
-
-**No duplicar el CV.** Nada de "Experiencia 2019-2022, Octopy, React Developer" en formato lista. La info del CV vive en LinkedIn/PDF adjunto; aquí se muestra *evidencia*, no biografía.
+**Role of whoever reads this:** You are the developer (Claude Code) executing this project in VS Code. This document is your architecture spec, defined together with Mauricio (product owner) and a Claude acting as software architect. It is not a résumé — it's a living cover letter. Follow the phases in order; don't jump to detailed implementation without closing the previous phase.
 
 ---
 
-## 2. Público objetivo y restricción de atención
+## 1. Product goal
 
-- Reclutadores no técnicos: hojean 15-45s. Necesitan impacto visual + mensaje claro de propuesta de valor.
-- Leads/hiring managers técnicos: si llegan, van a querer ver código real, no solo un portfolio bonito.
-- **Implicación de diseño:** el sitio no puede depender de que el usuario interactúe para "entender" quién es Mauricio. La interactividad es un plus para el que profundiza, no un requisito para el que hojea.
+A personal site that works as **proof of skill, not a summary**. The visitor (technical recruiter, hiring manager, lead) should:
+1. In the first 5-10 seconds, feel the quality of execution (speed, design, polish).
+2. In 30-60 seconds, understand what kind of problems Mauricio solves and how he thinks.
+3. If they decide to dig deeper, be able to **see and touch real code** — not just read about it.
 
----
-
-## 3. Decisión de arquitectura: Híbrido (estático rápido + 1-2 piezas interactivas fuertes)
-
-- Base del sitio: contenido estático o pre-renderizado, animaciones sutiles de scroll/entrada, cero fricción de carga.
-- Excepción: un **playground de código en vivo** (ver sección 6) como pieza central de diferenciación.
-- Presupuesto de performance: Lighthouse Performance ≥ 90, LCP < 2s en conexión promedio, sin layout shift notorio.
+**Don't duplicate the résumé.** No "Experience 2019-2022, Octopy, React Developer" in list format. Résumé info lives on LinkedIn/attached PDF; here we show *evidence*, not biography.
 
 ---
 
-## 4. Stack técnico
+## 2. Target audience and attention constraint
 
-| Capa | Elección | Razón |
+- Non-technical recruiters: skim for 15-45s. They need visual impact + a clear value-proposition message.
+- Technical leads/hiring managers: if they arrive, they'll want to see real code, not just a pretty portfolio.
+- **Design implication:** the site can't depend on the user interacting to "understand" who Mauricio is. Interactivity is a bonus for whoever digs deeper, not a requirement for whoever skims.
+
+---
+
+## 3. Architecture decision: Hybrid (fast static + 1-2 strong interactive pieces)
+
+- Site base: static or pre-rendered content, subtle scroll/entrance animations, zero loading friction.
+- Exception: a **live code playground** (see section 6) as the centerpiece of differentiation.
+- Performance budget: Lighthouse Performance ≥ 90, LCP < 2s on an average connection, no noticeable layout shift.
+
+---
+
+## 4. Tech stack
+
+| Layer | Choice | Reason |
 |---|---|---|
-| Framework | **Next.js (React + TypeScript)** | SSG para velocidad, App Router, permite usar Route Handlers si el playground necesita backend ligero |
-| Estilos | Tailwind CSS | Rapidez de iteración, consistente con sistema de diseño definido abajo |
-| Animaciones | Framer Motion | Transiciones de scroll/entrada sutiles, sin over-engineering |
-| Playground de código | Sandpack (CodeSandbox) o CodeMirror + runtime en cliente | Debe correr client-side, sin exponer secretos ni requerir backend persistente |
-| Hosting | **Vercel (subdominio gratuito, ej. `mauricio-rodriguez.vercel.app`)** | Integración nativa con Next.js, deploy automático desde GitHub, cero costo inicial. Dominio propio queda como mejora futura opcional, no bloqueante para el lanzamiento |
-| Fuente tipográfica | Monoespaciada para code/acentos (ej. JetBrains Mono) + sans-serif legible para texto largo (ej. Inter) | Refuerza identidad "técnica" sin sacrificar legibilidad |
-| Internacionalización | `next-intl` (o `i18n` nativo de Next App Router) | Idioma por defecto: **inglés**. Español como segundo idioma vía selector. Se implementa en Fase 2 (no en Fase 0/1) para no frenar el desarrollo inicial con la capa de traducción |
+| Framework | **Next.js (React + TypeScript)** | SSG for speed, App Router, allows using Route Handlers if the playground needs a lightweight backend |
+| Styling | Tailwind CSS | Fast iteration, consistent with the design system defined below |
+| Animations | Framer Motion | Subtle scroll/entrance transitions, no over-engineering |
+| Code playground | Sandpack (CodeSandbox) or CodeMirror + client-side runtime | Must run client-side, without exposing secrets or requiring a persistent backend |
+| Hosting | **Vercel (free subdomain, e.g. `mauricio-rodriguez.vercel.app`)** | Native integration with Next.js, automatic deploy from GitHub, zero upfront cost. A custom domain remains an optional future improvement, not a launch blocker |
+| Typeface | Monospace for code/accents (e.g. JetBrains Mono) + readable sans-serif for long text (e.g. Inter) | Reinforces "technical" identity without sacrificing readability |
+| Internationalization | `next-intl` (or Next App Router's native `i18n`) | Default language: **English**. Spanish as a second language via selector. Implemented in Phase 2 (not Phase 0/1) so as not to slow down initial development with the translation layer |
 
-**Nota:** no usar CMS ni base de datos. Todo el contenido vive en archivos (MDX o JSON) dentro del repo — es un sitio personal, no necesita esa complejidad operativa.
-
----
-
-## 5. Sistema de diseño — dirección visual
-
-**Tono elegido: Minimalista y técnico.**
-
-- Dark mode como default (posible light mode opcional, no prioritario en v1).
-- Estética "editor de código / terminal": tipografía monoespaciada en detalles (nav, tags, labels), paleta reducida (fondo casi negro, 1-2 acentos de color vivos — ej. verde terminal o cian, usados con moderación, no saturado).
-- Micro-detalles que refuerzan identidad de dev: cursores parpadeantes, prompts tipo `$`, números de línea en los snippets, sintaxis highlighting real (no capturas de pantalla de código).
-- Sin foto personal ni stock photos ni ilustraciones genéricas de "developer con laptop". La identidad visual se construye 100% con tipografía, código real, y el sistema de color/espaciado — el sitio debe sentirse tan cuidado que no necesite una cara para transmitir personalidad.
-- Movimiento con propósito: fade/slide sutil al entrar secciones en scroll, hover states con feedback inmediato. Evitar animación decorativa sin función.
+**Note:** no CMS or database. All content lives in files (MDX or JSON) within the repo — it's a personal site, it doesn't need that operational complexity.
 
 ---
 
-## 6. Arquitectura de contenido / secciones del sitio
+## 5. Design system — visual direction
+
+**Chosen tone: Minimalist and technical.**
+
+- Dark mode as default (optional light mode possible, not a priority in v1).
+- "Code editor / terminal" aesthetic: monospace typography in details (nav, tags, labels), reduced palette (near-black background, 1-2 vivid accent colors — e.g. terminal green or cyan, used sparingly, not oversaturated).
+- Micro-details reinforcing dev identity: blinking cursors, `$`-style prompts, line numbers in snippets, real syntax highlighting (not screenshots of code).
+- No personal photo, no stock photos, no generic "developer with laptop" illustrations. Visual identity is built 100% from typography, real code, and the color/spacing system — the site should feel so polished it doesn't need a face to convey personality.
+- Purposeful motion: subtle fade/slide as sections enter on scroll, hover states with immediate feedback. Avoid decorative animation with no function.
+
+---
+
+## 6. Content architecture / site sections
 
 ### 6.1 Hero
-**Copy final (definido con Mauricio):**
+**Final copy (defined with Mauricio):**
 > "Math taught me to see problems as puzzles. Code taught me to solve them. Now, I'm teaching an AI to join in."
 
-Este es el texto principal del hero. Atemporal (sin cifra de años), sin relleno, con progresión matemática → código → IA que conecta directamente con los 3 casos de estudio de la sección 6.2. No modificar el copy sin aprobación de Mauricio — es contenido ya cerrado, no placeholder.
+This is the hero's main text. Timeless (no years-of-experience figure), no filler, with a math → code → AI progression that connects directly to the 3 case studies in section 6.2. Do not modify this copy without Mauricio's approval — it's closed content, not a placeholder.
 
-### 6.2 "Cómo pienso" / Casos de estudio (Rayos X del código)
-3 casos, cada uno con: contexto breve del problema (1-2 líneas, sin nombrar clientes/empresas reales por NDA), la decisión técnica clave, y un snippet de código curado y comentado que ilustra esa decisión.
+### 6.2 "How I think" / Case studies (Code X-rays)
+3 cases, each with: brief problem context (1-2 lines, no real client/company names due to NDA), the key technical decision, and a curated, commented code snippet illustrating that decision.
 
-Casos seleccionados:
-1. **Optimización bajo tráfico alto** (dominio: medios/marketing) — mostrar el patrón de optimización real usado (ej. estrategia de caching, lazy loading, o refactor de código deprecado), generalizado y anonimizado.
-2. **Multi-repo / DevOps** (basado en experiencia en Octopy) — no es un snippet de feature, es evidencia de pensamiento de ingeniería a nivel de equipo: estructura de repositorios, gestión de permisos, diseño de pipelines CI/CD (deploy a QA/producción vía Node.js + PM2). El "snippet" aquí puede ser, por ejemplo, un fragmento de configuración de pipeline (YAML) comentado explicando las decisiones — qué gates de calidad se validan antes de mergear/desplegar, y por qué.
-3. **Agente de IA local con Ollama** — este es el más flexible porque es proyecto personal, sin restricción de NDA. Ideal candidato para ser también la base del playground interactivo (sección 6.3), ya que Mauricio puede compartir código real sin restricción.
+Selected cases:
+1. **Optimization under high traffic** (domain: media/marketing) — show the real optimization pattern used (e.g. caching strategy, lazy loading, or refactor of deprecated code), generalized and anonymized.
+2. **Multi-repo / DevOps** (based on experience at Octopy) — not a feature snippet, it's evidence of team-level engineering thinking: repo structure, permission management, CI/CD pipeline design (deploy to QA/production via Node.js + PM2). The "snippet" here can be, for example, a fragment of pipeline configuration (YAML) commented to explain the decisions — which quality gates are validated before merging/deploying, and why.
+3. **Local AI agent with Ollama** — the most flexible one because it's a personal project, with no NDA restriction. Ideal candidate to also be the base for the interactive playground (section 6.3), since Mauricio can share real code without restriction.
 
-**Regla para todos los snippets:** nunca código copiado literal de un cliente. Siempre reescrito/generalizado conservando el patrón y la decisión de diseño, no los detalles de negocio del cliente.
+**Rule for all snippets:** never literal client code. Always rewritten/generalized, preserving the pattern and design decision, not the client's business details.
 
-**Nota de proceso:** Mauricio no compartirá código real de clientes por temas de NDA. Los 3 snippets deben ser **escritos desde cero por Claude Code**, siguiendo estrictamente las especificaciones de patrón técnico de abajo — no inventar libremente. El objetivo es que el patrón sea técnicamente correcto y defendible en una entrevista (Mauricio debe poder hablar de esto con propiedad), no que sea código copiado.
+**Process note:** Mauricio will not share real client code due to NDA. The 3 snippets must be **written from scratch by Claude Code**, strictly following the technical pattern specs below — not freely invented. The goal is for the pattern to be technically correct and defensible in an interview (Mauricio must be able to speak about it with authority), not for it to be copied code.
 
-#### Especificación snippet 1 — Optimización bajo tráfico alto
-- **Patrón a ilustrar:** estrategia de caching tipo *stale-while-revalidate* para llamadas a API, combinada con deduplicación de requests concurrentes (evitar N llamadas idénticas simultáneas cuando hay picos de tráfico).
-- **Lenguaje:** TypeScript, estilo hook de React (ej. `useCachedFetch` o similar).
-- **Comentarios obligatorios:** explicar *por qué* este patrón reduce carga al backend durante picos, y el trade-off de servir datos ligeramente obsoletos a cambio de resiliencia.
-- **Tono del copy alrededor:** "Cuando el tráfico se dispara, la peor decisión es dejar que cada usuario dispare su propia llamada al backend. Así es como diseño la capa de caching para que aguante el pico sin caerse."
+#### Snippet 1 spec — Optimization under high traffic
+- **Pattern to illustrate:** *stale-while-revalidate*-style caching strategy for API calls, combined with deduplication of concurrent requests (avoiding N identical simultaneous calls during traffic spikes).
+- **Language:** TypeScript, React hook style (e.g. `useCachedFetch` or similar).
+- **Required comments:** explain *why* this pattern reduces backend load during spikes, and the trade-off of serving slightly stale data in exchange for resilience.
+- **Tone of surrounding copy:** "When traffic spikes, the worst decision is letting every user fire their own call to the backend. Here's how I design the caching layer so it can absorb the spike without falling over."
 
-#### Especificación snippet 2 — Multi-repo / DevOps
-- **Patrón a ilustrar:** fragmento de configuración de pipeline CI/CD (formato YAML, tipo GitHub Actions) con stages de calidad antes de deploy: lint → test → build → deploy condicionado a rama/entorno (QA vs producción).
-- **Comentarios obligatorios:** explicar la razón de cada gate (ej. por qué el deploy a producción requiere aprobación manual o tag, por qué el pipeline de QA es más permisivo).
-- **Tono del copy alrededor:** enfatizar que esto no es "código de feature", es diseño de proceso — mostrar que Mauricio piensa en el equipo completo, no solo en su propio commit.
+#### Snippet 2 spec — Multi-repo / DevOps
+- **Pattern to illustrate:** CI/CD pipeline configuration fragment (YAML format, GitHub Actions style) with quality stages before deploy: lint → test → build → deploy conditioned on branch/environment (QA vs production).
+- **Required comments:** explain the reason for each gate (e.g. why production deploy requires manual approval or a tag, why the QA pipeline is more permissive).
+- **Tone of surrounding copy:** emphasize that this isn't "feature code," it's process design — showing that Mauricio thinks about the whole team, not just his own commit.
 
-#### Especificación snippet 3 — Agente de IA con Ollama
-- **Patrón a ilustrar:** orquestación de function-calling/tool-use en un agente local — ej. cómo se define un set de "tools" disponibles para el modelo, se parsea su decisión, y se ejecuta la función correspondiente.
-- **Este es el único snippet que puede acercarse a código real**, ya que es proyecto personal sin NDA. Si Mauricio decide compartir fragmentos reales más adelante, este es el candidato; si no, Claude Code lo redacta siguiendo el patrón general de orquestación de tools en agentes con LLMs locales.
-- Este snippet es también la base para el playground interactivo (sección 6.3) — debe quedar simplificado a una versión que corra 100% en el navegador (sin llamar a un Ollama real).
+#### Snippet 3 spec — AI agent with Ollama
+- **Pattern to illustrate:** function-calling/tool-use orchestration in a local agent — e.g. how a set of "tools" available to the model is defined, its decision is parsed, and the corresponding function is executed.
+- **This is the only snippet that can come close to real code**, since it's a personal project with no NDA. If Mauricio decides to share real fragments later, this is the candidate; otherwise, Claude Code writes it following the general tool-orchestration pattern for agents with local LLMs.
+- This snippet is also the base for the interactive playground (section 6.3) — it must be simplified to a version that runs 100% in the browser (without calling a real Ollama instance).
 
-### 6.3 Playground interactivo (pieza "wow")
-Un componente donde el visitante puede:
-- Ver un snippet real y editable relacionado con el proyecto de agente de IA (ej. un mini flujo de function calling, o un fragmento de lógica de orquestación con Ollama).
-- Modificar parámetros o código y ver el resultado/output cambiar en vivo (ej. simulación en el navegador, no llamada real a un modelo local — eso no es desplegable en Vercel).
-- Debe ejecutarse 100% en cliente. No depender de que el Ollama local de Mauricio esté corriendo.
+### 6.3 Interactive playground ("wow" piece)
+A component where the visitor can:
+- View a real, editable snippet related to the AI agent project (e.g. a mini function-calling flow, or an orchestration logic fragment with Ollama).
+- Modify parameters or code and see the result/output change live (e.g. in-browser simulation, not a real call to a local model — that isn't deployable on Vercel).
+- Must run 100% client-side. Must not depend on Mauricio's local Ollama instance running.
 
-### 6.4 Stack / herramientas
-No lista aburrida de logos. Preferible: agrupado por "para qué lo uso" (ej. "Cuando necesito velocidad de iteración: React + TS + Tailwind" / "Cuando el proyecto crece: Node + Express / NestJS + Postgres"). Mantener breve.
+### 6.4 Stack / tools
+Not a boring list of logos. Preferred: grouped by "what I use it for" (e.g. "When I need iteration speed: React + TS + Tailwind" / "When the project grows: Node + Express / NestJS + Postgres"). Keep it brief.
 
-### 6.5 Contacto / CTA final
-Simple, directo: email, LinkedIn, y opcional link a CV en PDF. Nada de formularios de contacto complejos — un reclutador no va a llenar un form, va a copiar el email o mandar LinkedIn.
+### 6.5 Contact / final CTA
+Simple, direct: email, LinkedIn, and an optional link to a CV PDF. No complex contact forms — a recruiter isn't going to fill out a form, they're going to copy the email or send a LinkedIn message.
 
 ---
 
-## 7. No-metas explícitas (para evitar scope creep)
+## 7. Explicit non-goals (to avoid scope creep)
 
 - No blog.
-- No sistema de comentarios ni analytics complejos (Vercel Analytics básico es suficiente si se quiere).
-- No autenticación ni backend persistente.
-- No responsive "perfecto" en todos los breakpoints imaginables — sí mobile-friendly funcional, pero el público principal revisa desde desktop/laptop.
-- Internacionalización limitada a EN/ES vía selector simple (ver sección 3, `next-intl`). No agregar más idiomas ni lógica de detección automática de región/navegador en v1 — es un plus, no debe consumir tiempo desproporcionado del roadmap.
+- No comment system or complex analytics (basic Vercel Analytics is enough if desired).
+- No authentication or persistent backend.
+- No "perfect" responsiveness across every imaginable breakpoint — yes to functional mobile-friendliness, but the main audience checks from desktop/laptop.
+- Internationalization limited to EN/ES via a simple selector (see section 3, `next-intl`). Don't add more languages or automatic region/browser detection logic in v1 — it's a nice-to-have, it shouldn't consume disproportionate roadmap time.
 
 ---
 
-## 8. Roadmap de ejecución (fases para Claude Code)
+## 8. Execution roadmap (phases for Claude Code)
 
-**Fase 0 — Setup**
-Proyecto Next.js + TypeScript + Tailwind, estructura de carpetas, configuración de fuentes, paleta de colores en `tailwind.config`, deploy inicial "hola mundo" a Vercel para validar el pipeline desde el día 1.
+**Phase 0 — Setup**
+Next.js + TypeScript + Tailwind project, folder structure, font configuration, color palette in `tailwind.config`, initial "hello world" deploy to Vercel to validate the pipeline from day one.
 
-**Fase 1 — Layout y sistema de diseño**
-Construir el shell de navegación, hero, y el sistema de componentes base (tipografía, botones, cards, tags) siguiendo la dirección visual de la sección 5. Sin contenido final todavía — usar contenido placeholder.
+**Phase 1 — Layout and design system**
+Build the navigation shell, hero, and base component system (typography, buttons, cards, tags) following the visual direction in section 5. No final content yet — use placeholder content.
 
-**Fase 2 — Secciones de contenido estático**
-Casos de estudio (6.2), sección de stack (6.4), contacto (6.5), con animaciones de scroll (Framer Motion). Contenido real de los primeros 2 casos ya definidos.
+**Phase 2 — Static content sections**
+Case studies (6.2), stack section (6.4), contact (6.5), with scroll animations (Framer Motion). Real content for the first 2 already-defined cases.
 
-**Fase 3 — Playground interactivo**
-Investigar e implementar la solución de sandbox client-side (Sandpack u otra), integrar el snippet del proyecto de IA, validar que funcione bien en mobile y no rompa performance del resto del sitio (cargar de forma diferida/lazy).
+**Phase 3 — Interactive playground**
+Research and implement the client-side sandbox solution (Sandpack or another), integrate the AI project snippet, validate it works well on mobile and doesn't break the rest of the site's performance (load lazily/deferred).
 
-**Fase 4 — Pulido y performance**
-Auditoría Lighthouse, ajustar imágenes/fuentes, revisar accesibilidad básica (contraste, navegación por teclado), meta tags básicos (aunque no se indexe, sirve para el preview al compartir el link en LinkedIn/mensajes).
+**Phase 4 — Polish and performance**
+Lighthouse audit, adjust images/fonts, review basic accessibility (contrast, keyboard navigation), basic meta tags (even if not indexed, useful for the preview when sharing the link on LinkedIn/messages).
 
-**Fase 5 — Deploy final y dominio**
-Configurar dominio propio si Mauricio decide comprar uno (ej. mauriciorodriguez.dev), o usar el subdominio de Vercel. Verificar que el link final funcione bien embebido como preview en LinkedIn/Slack/email.
-
----
-
-## 9. Pendientes que requieren decisión/input de Mauricio antes o durante el build
-
-**Todos resueltos.** El brief está completo y listo para pasar a ejecución (Fase 0).
-
-- ~~Foto personal~~ → No habrá foto. El sitio se apoya 100% en tipografía, código y diseño, sin rostro.
-- ~~Dominio~~ → Subdominio gratuito de Vercel para el lanzamiento inicial. Dominio propio queda como mejora futura.
-- ~~Idioma~~ → Inglés como idioma principal, con internacionalización (selector ES/EN) como feature de Fase 2.
-- ~~Tercer caso de estudio~~ → Multi-repo/DevOps (Octopy): estructura de repos, permisos, pipelines CI/CD.
-- ~~Snippets de código~~ → No se usará código real de cliente (NDA). Claude Code los redacta siguiendo las especificaciones de patrón técnico detalladas en la sección 6.2.
-- ~~Copy del hero~~ → Ver sección 6.1, texto final ya cerrado.
+**Phase 5 — Final deploy and domain**
+Configure a custom domain if Mauricio decides to buy one (e.g. `mauriciorodriguez.dev`), or use the Vercel subdomain. Verify the final link looks good embedded as a preview on LinkedIn/Slack/email.
 
 ---
 
-## 10. Criterio de "listo para lanzar"
+## 9. Open items requiring Mauricio's decision/input before or during the build
 
-El sitio está listo cuando: carga en <2s, se ve bien en desktop y mobile, el playground funciona sin errores en consola, no hay ningún texto placeholder ("Lorem ipsum", contenido sin redactar), y Mauricio puede compartir el link y sentir que representa su nivel real de ejecución — no una plantilla genérica de portfolio.
+**All resolved.** The brief is complete and ready to move to execution (Phase 0).
+
+- ~~Personal photo~~ → No photo. The site relies 100% on typography, code, and design, with no face.
+- ~~Domain~~ → Free Vercel subdomain for the initial launch. Custom domain remains a future improvement.
+- ~~Language~~ → English as the main language, with internationalization (ES/EN selector) as a Phase 2 feature.
+- ~~Third case study~~ → Multi-repo/DevOps (Octopy): repo structure, permissions, CI/CD pipelines.
+- ~~Code snippets~~ → No real client code will be used (NDA). Claude Code writes them following the technical pattern specs detailed in section 6.2.
+- ~~Hero copy~~ → See section 6.1, final text already closed.
+
+---
+
+## 10. "Ready to launch" criteria
+
+The site is ready when: it loads in <2s, it looks good on desktop and mobile, the playground works with no console errors, there is no placeholder text left ("Lorem ipsum," undrafted content), and Mauricio can share the link and feel it represents his actual level of execution — not a generic portfolio template.
+
+---
+
+## Project conventions
+
+- **Language for docs and comments: English.** All project documentation (this file, `TODO.md`, code comments) is written in English going forward, so the repository can be shared publicly or with English-speaking reviewers without translation. Conversation with Mauricio can still happen in Spanish; written artifacts in the repo are English-only.
