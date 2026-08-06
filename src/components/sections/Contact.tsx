@@ -12,7 +12,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24 text-center"
+      className="mx-auto w-full max-w-5xl scroll-mt-20 px-6 py-24 text-center"
     >
       <Reveal>
         <h2 className="font-mono text-sm uppercase tracking-wide text-accent">

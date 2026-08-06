@@ -4,6 +4,7 @@
   },
   "nav": {
     "work": "How I Think",
+    "playground": "Playground",
     "stack": "Stack",
     "contact": "Contact"
   },
@@ -32,6 +33,15 @@
       "proseIntro": "The model doesn't get to run anything. It gets to ask. This is the pattern that draws that line — and it's also the base for the playground below, simplified to run entirely in your browser.",
       "decision": "Tool-calling orchestration: the model is given a fixed catalog of named tools, its response is parsed for a structured tool call, and only the orchestrator — never the model itself — executes it."
     }
+  },
+  "playground": {
+    "heading": "Try it yourself",
+    "subheading": "The tool-calling pattern from the case study above, live.",
+    "intro": "Edit the code, change what the \"model\" replied with, and run it — everything executes right here in your browser, no server involved.",
+    "modelOutputLabel": "Model output (simulated)",
+    "runCta": "Run",
+    "errorPrefix": "Error:",
+    "loading": "Loading playground…"
   },
   "stack": {
     "heading": "Stack",

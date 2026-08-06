@@ -30,6 +30,17 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/*
+  body is a column flex container (see layout.tsx) so Hero can grow to fill
+  the viewport with flex-1. That makes every section a flex item, which by
+  default won't shrink below its content's intrinsic width — e.g. a long,
+  unwrapped code line in the Playground's editor — causing page-wide
+  horizontal scroll. min-width: 0 is the standard fix.
+*/
+body > * {
+  min-width: 0;
+}
+
 @keyframes blink {
   0%,
   49% {
