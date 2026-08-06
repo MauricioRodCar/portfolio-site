@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "description": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora, estoy enseñando a una IA a unirse."
+  },
+  "nav": {
+    "work": "Cómo pienso",
+    "stack": "Stack",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "headline": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora, estoy enseñando a una <accent>IA</accent> a unirse."
+  },
+  "caseStudies": {
+    "heading": "Cómo pienso",
+    "subheading": "Tres decisiones, y el razonamiento detrás de cada una.",
+    "decisionLabel": "Decisión:",
+    "traffic-optimization": {
+      "title": "Optimización bajo tráfico alto",
+      "context": "Las páginas de artículos de una plataforma de medios pasaron de unos cientos a decenas de miles de lectores concurrentes en minutos, cuando una noticia se volvió viral — y todos estaban golpeando el mismo endpoint de la API al mismo tiempo.",
+      "proseIntro": "Cuando el tráfico se dispara, la peor decisión es dejar que cada usuario dispare su propia llamada al backend. Así es como diseño la capa de caching para que aguante el pico sin caerse.",
+      "decision": "Caching tipo stale-while-revalidate para las llamadas a la API, combinado con deduplicación de requests concurrentes, para que un pico de tráfico produzca una sola llamada al backend en vez de miles idénticas."
+    },
+    "devops-pipeline": {
+      "title": "Multi-repo / DevOps",
+      "context": "Un equipo de ingeniería pequeño desplegaba tanto a un entorno de QA como a producción, con deploys hechos a mano — lo que significaba que lo único que separaba una rama rota de producción era que alguien se acordara de correr los checks ese día.",
+      "proseIntro": "Esto no es código de feature — es diseño de proceso. El trabajo aquí no fue escribir una función ingeniosa, fue asegurar que todo el equipo pudiera desplegar sin que nadie tuviera que acordarse de tener cuidado.",
+      "decision": "Un pipeline de CI/CD con gates de calidad (lint, test, build) que toda rama debe pasar, donde QA despliega automáticamente desde develop y producción solo se despliega desde main detrás de un entorno que requiere aprobación de un revisor."
+    },
+    "ai-agent": {
+      "title": "Agente de IA local con Ollama",
+      "context": "Un proyecto personal: un agente local que corre completamente en el dispositivo contra Ollama, y necesita actuar sobre el mundo real — revisar el clima, hacer una conversión, buscar algo — sin darle nunca al modelo acceso directo al sistema de archivos, la red, o la shell.",
+      "proseIntro": "El modelo no puede ejecutar nada. Puede pedir. Este es el patrón que traza esa línea — y también es la base del playground de abajo, simplificado para correr completamente en tu navegador.",
+      "decision": "Orquestación de tool-calling: al modelo se le da un catálogo fijo de herramientas con nombre, su respuesta se parsea buscando una llamada a herramienta estructurada, y solo el orquestador — nunca el modelo mismo — la ejecuta."
+    }
+  },
+  "stack": {
+    "heading": "Stack",
+    "groups": {
+      "iterationSpeed": "Cuando necesito velocidad de iteración",
+      "projectGrows": "Cuando el proyecto crece"
+    }
+  },
+  "contact": {
+    "heading": "Contacto",
+    "intro": "La forma más rápida de contactarme es por email o LinkedIn.",
+    "emailCta": "Email",
+    "linkedinCta": "LinkedIn",
+    "resumeCta": "CV (PDF)"
+  }
+}

@@ -2,13 +2,6 @@ import type { CaseStudy } from "./types";
 
 export const devopsPipeline: CaseStudy = {
   slug: "devops-pipeline",
-  title: "Multi-repo / DevOps",
-  context:
-    "A small engineering team was shipping to both a QA and a production environment, with deploys handled by hand — meaning the only thing standing between a broken branch and production was whoever remembered to run the checks that day.",
-  decision:
-    "A CI/CD pipeline with quality gates (lint, test, build) that every branch must clear, where QA deploys automatically off develop and production only ships from main behind a required-reviewer environment.",
-  proseIntro:
-    "This isn't feature code — it's process design. The job here wasn't writing a clever function, it was making sure the whole team could ship without anyone having to remember to be careful.",
   lang: "yaml",
   filename: ".github/workflows/deploy.yml",
   tags: ["CI/CD", "GitHub Actions", "DevOps", "Node.js", "PM2"],

@@ -2,13 +2,6 @@ import type { CaseStudy } from "./types";
 
 export const trafficOptimization: CaseStudy = {
   slug: "traffic-optimization",
-  title: "Optimization under high traffic",
-  context:
-    "A media platform's article pages went from a few hundred to tens of thousands of concurrent readers within minutes of a story going viral — and every one of them was hitting the same API endpoint at once.",
-  decision:
-    "Stale-while-revalidate caching for API calls, combined with deduplication of concurrent requests, so a traffic spike produces one backend call instead of thousands of identical ones.",
-  proseIntro:
-    "When traffic spikes, the worst decision is letting every user fire their own call to the backend. Here's how I design the caching layer so it can absorb the spike without falling over.",
   lang: "typescript",
   filename: "useCachedFetch.ts",
   tags: ["TypeScript", "React", "Caching", "Performance"],

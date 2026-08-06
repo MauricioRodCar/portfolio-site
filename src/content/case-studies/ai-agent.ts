@@ -2,13 +2,6 @@ import type { CaseStudy } from "./types";
 
 export const aiAgent: CaseStudy = {
   slug: "ai-agent",
-  title: "Local AI agent with Ollama",
-  context:
-    "A personal project: a local agent that runs entirely on-device against Ollama, and needs to act on the real world — check the weather, do a conversion, look something up — without ever giving the model direct access to the filesystem, network, or shell.",
-  decision:
-    "Tool-calling orchestration: the model is given a fixed catalog of named tools, its response is parsed for a structured tool call, and only the orchestrator — never the model itself — executes it.",
-  proseIntro:
-    "The model doesn't get to run anything. It gets to ask. This is the pattern that draws that line — and it's also the base for the playground below, simplified to run entirely in your browser.",
   lang: "typescript",
   filename: "agent.ts",
   tags: ["TypeScript", "LLM", "Ollama", "Tool calling"],

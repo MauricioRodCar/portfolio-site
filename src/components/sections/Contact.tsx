@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -6,6 +7,8 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/mauricio-rodriguez-carballo";
 const RESUME_URL = "/MauricioRodriguez_Resume.pdf";
 
 export function Contact() {
+  const t = useTranslations("contact");
+
   return (
     <section
       id="contact"
@@ -13,20 +16,18 @@ export function Contact() {
     >
       <Reveal>
         <h2 className="font-mono text-sm uppercase tracking-wide text-accent">
-          Contact
+          {t("heading")}
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-foreground">
-          The fastest way to reach me is email or LinkedIn.
-        </p>
+        <p className="mx-auto mt-4 max-w-md text-foreground">{t("intro")}</p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Button href={`mailto:${EMAIL}`}>Email</Button>
+          <Button href={`mailto:${EMAIL}`}>{t("emailCta")}</Button>
           <Button
             href={LINKEDIN_URL}
             variant="outline"
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            {t("linkedinCta")}
           </Button>
           <Button
             href={RESUME_URL}
@@ -34,7 +35,7 @@ export function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Resume (PDF)
+            {t("resumeCta")}
           </Button>
         </div>
       </Reveal>
