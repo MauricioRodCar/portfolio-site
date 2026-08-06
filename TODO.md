@@ -7,8 +7,10 @@ Living log of deferred decisions and pending work. Updated any time something fa
 ---
 
 ## Phase 1 — Layout and design system
-- [ ] `src/components/ui/`: build Button, Card, Tag, and other base design-system components (section 5). In Phase 0 this folder may not exist or may stay empty.
-- [ ] `src/components/sections/`: implement the real Hero with the closed copy from section 6.1. In Phase 0 there's only a minimal placeholder in `page.tsx` to validate the deploy.
+- [x] `src/components/ui/`: Button and Tag are wired into the Nav/Hero shell; Card is built but has no consumer yet — it's the base for case-study cards in Phase 2.
+- [x] `src/components/layout/Nav.tsx`: sticky nav shell (brand mark, "How I Think" / "Stack" anchor links, outlined Contact CTA). Not in the original folder proposal — added alongside `ui/` and `sections/` since nav chrome isn't content and isn't a design-system primitive.
+- [x] `src/components/sections/Hero.tsx`: real Hero with the closed copy from section 6.1, plus a `$ whoami` terminal-prompt micro-detail with a blinking cursor (section 5).
+- [ ] Nav's `#work` / `#stack` / `#contact` anchors don't resolve to anything yet — no-op until Phase 2 adds matching section ids.
 
 ## Phase 2 — Static content
 - [ ] `src/content/case-studies/`: write the 3 case studies (section 6.2) — optimization under high traffic, multi-repo/DevOps (Octopy), AI agent with Ollama. Snippets written from scratch by Claude Code following the brief's technical specs, never real client code (NDA).
@@ -44,3 +46,4 @@ Living log of deferred decisions and pending work. Updated any time something fa
 - **GitHub repo:** already exists and is connected — `github.com/MauricioRodCar/portfolio-site`. Phase 0 connected this repo to Vercel for the initial deploy; it didn't create a new one.
 - **Documentation language:** all project documentation and code comments are now written in English going forward (this file and `CLAUDE.md` were translated from Spanish). Conversation with Mauricio can still happen in Spanish; written repo artifacts are English-only. See the "Project conventions" section at the bottom of `CLAUDE.md`.
 - **Vercel deploy:** live at `https://portfolio-site-omega-ivory.vercel.app/`. Phase 0 "hello world" pipeline validated end-to-end (push to `main` → auto-deploy) on 2026-08-06.
+- **Branching workflow:** starting Phase 1, each phase (and any other relevant feature) is built on its own branch off `main` rather than committed directly, to keep the repo history and `main` clean for sharing. Phase 1 lives on `phase-1-layout-design-system`.
