@@ -4,6 +4,7 @@
   },
   "nav": {
     "skipToContent": "Saltar al contenido",
+    "puzzle": "Rompecabezas",
     "work": "Cómo pienso",
     "playground": "Playground",
     "stack": "Stack",
@@ -35,6 +36,20 @@
       "proseIntro": "El modelo no puede ejecutar nada. Puede pedir. Este es el patrón que traza esa línea — y también es la base del playground de abajo, simplificado para correr completamente en tu navegador.",
       "decision": "Orquestación de tool-calling: al modelo se le da un catálogo fijo de herramientas con nombre, su respuesta se parsea buscando una llamada a herramienta estructurada, y solo el orquestador — nunca el modelo mismo — la ejecuta."
     }
+  },
+  "maze": {
+    "heading": "Rompecabezas",
+    "subheading": "Dibuja una pared. Míralo encontrar la vuelta.",
+    "intro": "Esta es la parte de “las matemáticas me enseñaron a ver los problemas como rompecabezas”, hecha interactiva. Arrastra para dibujar paredes, mueve los marcadores A/B a donde quieras — A* lo resuelve de nuevo en vivo.",
+    "filename": "solver.ts",
+    "resetCta": "Reiniciar",
+    "gridAriaLabel": "Grilla de laberinto interactiva. Arrastra para dibujar paredes, y mueve los marcadores A y B para cambiar el inicio y el final. Un algoritmo de búsqueda de caminos anima la ruta más corta entre ellos.",
+    "legendExplored": "explorado",
+    "legendPath": "camino más corto",
+    "legendWall": "pared",
+    "statusSolving": "resolviendo…",
+    "statusSolved": "resuelto",
+    "statusUnreachable": "sin camino — quita una pared"
   },
   "playground": {
     "heading": "Pruébalo tú mismo",
