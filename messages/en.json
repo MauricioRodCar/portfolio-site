@@ -73,6 +73,19 @@
       "backend": "Backend, CMS & data",
       "cloud": "Cloud & DevOps",
       "tooling": "Tooling & testing"
+    },
+    "viewToggleAriaLabel": "Stack view",
+    "viewToggleList": "List",
+    "viewToggleConstellation": "Constellation",
+    "constellationAriaLabel": "A node graph of my stack, grouped into six categories. Hover or tap a node to see the technologies in it.",
+    "constellationPrompt": "Hover or tap a node to see what's inside.",
+    "constellationLabels": {
+      "iterationSpeed": "Iteration speed",
+      "projectGrows": "Scaling",
+      "frontend": "Frontend",
+      "backend": "Backend & data",
+      "cloud": "Cloud & DevOps",
+      "tooling": "Tooling"
     }
   },
   "audit": {

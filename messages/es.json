@@ -73,6 +73,19 @@
       "backend": "Backend, CMS y datos",
       "cloud": "Cloud y DevOps",
       "tooling": "Herramientas y testing"
+    },
+    "viewToggleAriaLabel": "Vista del stack",
+    "viewToggleList": "Lista",
+    "viewToggleConstellation": "Constelación",
+    "constellationAriaLabel": "Un grafo de nodos de mi stack, agrupado en seis categorías. Pasa el mouse o toca un nodo para ver las tecnologías que incluye.",
+    "constellationPrompt": "Pasa el mouse o toca un nodo para ver qué incluye.",
+    "constellationLabels": {
+      "iterationSpeed": "Iteración rápida",
+      "projectGrows": "Escalabilidad",
+      "frontend": "Frontend",
+      "backend": "Backend y datos",
+      "cloud": "Cloud y DevOps",
+      "tooling": "Herramientas"
     }
   },
   "audit": {
