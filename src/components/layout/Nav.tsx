@@ -8,7 +8,10 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-10 border-b border-border bg-background/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#" className="font-mono text-sm text-foreground">
+        <a
+          href="#"
+          className="rounded font-mono text-sm text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
           <span className="text-accent">&gt;</span> mauricio.dev
         </a>
         <div className="flex items-center gap-4 sm:gap-6">
@@ -18,21 +21,27 @@ export function Nav() {
           <div className="hidden items-center gap-6 md:flex">
             <a
               href="#work"
-              className="font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent"
+              className="rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               {t("work")}
             </a>
             <a
               href="#playground"
-              className="font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent"
+              className="rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               {t("playground")}
             </a>
             <a
               href="#stack"
-              className="font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent"
+              className="rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               {t("stack")}
+            </a>
+            <a
+              href="#audit"
+              className="rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              {t("audit")}
             </a>
           </div>
           <LocaleSwitcher />

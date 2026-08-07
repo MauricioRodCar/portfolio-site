@@ -3,9 +3,11 @@
     "description": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora, estoy enseñando a una IA a unirse."
   },
   "nav": {
+    "skipToContent": "Saltar al contenido",
     "work": "Cómo pienso",
     "playground": "Playground",
     "stack": "Stack",
+    "audit": "Auditoría",
     "contact": "Contacto"
   },
   "hero": {
@@ -49,6 +51,21 @@
       "iterationSpeed": "Cuando necesito velocidad de iteración",
       "projectGrows": "Cuando el proyecto crece"
     }
+  },
+  "audit": {
+    "heading": "Verificado, no solo afirmado",
+    "subheading": "Los números de performance y accesibilidad detrás de este sitio.",
+    "intro": "No es una insignia que me inventé — es una auditoría real de Lighthouse contra un build de producción, y puedes volver a correrla tú mismo cuando quieras.",
+    "categories": {
+      "performance": "performance",
+      "accessibility": "accesibilidad",
+      "bestPractices": "buenas prácticas",
+      "seo": "seo"
+    },
+    "desktopLabel": "desktop",
+    "mobileLabel": "mobile",
+    "measuredOn": "Medido el",
+    "verifyCta": "Verifícalo tú mismo en PageSpeed Insights ↗"
   },
   "contact": {
     "heading": "Contacto",

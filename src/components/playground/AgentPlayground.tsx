@@ -40,12 +40,12 @@ export function AgentPlayground() {
             value={modelOutput}
             onChange={(e) => setModelOutput(e.target.value)}
             spellCheck={false}
-            className="mt-1 w-full rounded-md border border-border bg-transparent px-3 py-2 font-mono text-sm text-foreground outline-none focus:border-accent"
+            className="mt-1 w-full rounded-md border border-border bg-transparent px-3 py-2 font-mono text-sm text-foreground focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           />
         </label>
         <button
           onClick={handleRun}
-          className="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 font-mono text-xs uppercase tracking-wide text-accent-foreground transition-colors hover:bg-accent/90"
+          className="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 font-mono text-xs uppercase tracking-wide text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           {t("runCta")}
         </button>

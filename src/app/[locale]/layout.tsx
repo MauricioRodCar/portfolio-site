@@ -20,6 +20,9 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+const SITE_NAME = "Mauricio Rodríguez Carballo";
+const SITE_URL = "https://portfolio-site-omega-ivory.vercel.app";
+
 export async function generateMetadata({
   params,
 }: {
@@ -27,10 +30,29 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
+  const description = t("description");
 
   return {
-    title: "Mauricio Rodríguez Carballo",
-    description: t("description"),
+    metadataBase: new URL(SITE_URL),
+    title: SITE_NAME,
+    description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { en: "/en", es: "/es" },
+    },
+    openGraph: {
+      title: SITE_NAME,
+      description,
+      url: `/${locale}`,
+      siteName: SITE_NAME,
+      locale: locale === "es" ? "es_ES" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: SITE_NAME,
+      description,
+    },
   };
 }
 
@@ -45,6 +67,7 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const t = await getTranslations({ locale, namespace: "nav" });
 
   return (
     <html
@@ -52,7 +75,15 @@ export default async function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-wide focus:text-accent-foreground"
+          >
+            {t("skipToContent")}
+          </a>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -20,11 +20,11 @@ export function LocaleSwitcher() {
           <Link
             href={pathname}
             locale={code}
-            className={
+            className={`rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
               code === activeLocale
                 ? "text-accent"
                 : "text-muted transition-colors hover:text-accent"
-            }
+            }`}
           >
             {label}
           </Link>
