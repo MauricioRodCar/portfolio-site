@@ -1,10 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-
-const EMAIL = "contact.mauricio.rodriguez@gmail.com";
-const LINKEDIN_URL = "https://www.linkedin.com/in/mauricio-rodriguez-carballo";
-const RESUME_URL = "/MauricioRodriguez_Resume.pdf";
+import { EMAIL, LINKEDIN_URL, RESUME_URL } from "@/content/contact";
 
 export function Contact() {
   const t = useTranslations("contact");

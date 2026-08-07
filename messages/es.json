@@ -109,5 +109,42 @@
     "emailCta": "Email",
     "linkedinCta": "LinkedIn",
     "resumeCta": "CV (PDF)"
+  },
+  "shell": {
+    "openLabel": "Abrir terminal",
+    "hintText": "Prueba la terminal →",
+    "closeLabel": "Cerrar",
+    "closeHint": "Esc",
+    "inputPlaceholder": "Escribe un comando…",
+    "welcomeOutput": "Mauricio Rodríguez Carballo — Software Engineer.",
+    "welcomeHint": "Escribe \"help\" o haz clic en un comando abajo.",
+    "jumpCta": "→ ver esta sección",
+    "commandNotFound": "comando no encontrado: {command}. Escribe \"help\" para ver los comandos disponibles.",
+    "commands": {
+      "help": {
+        "output": "Comandos disponibles:"
+      },
+      "whoami": {
+        "output": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora le estoy enseñando a una IA a unirse."
+      },
+      "work": {
+        "output": "Tres decisiones reales de ingeniería: caching bajo picos de tráfico, un pipeline de CI/CD, y orquestación de tool-calling para un agente de IA local."
+      },
+      "stack": {
+        "output": "Lo que uso por defecto:"
+      },
+      "playground": {
+        "output": "El patrón de tool-calling del agente de IA, en vivo — edita el código, cambia el input, corre todo en tu navegador."
+      },
+      "puzzle": {
+        "output": "Dibuja una pared, arrastra los marcadores, mira a A* encontrar la vuelta."
+      },
+      "audit": {
+        "output": "Números reales de Lighthouse contra un build de producción, no una insignia que me inventé:"
+      },
+      "sudoHireMe": {
+        "output": "Permiso concedido. Te redirijo a la forma más rápida de que esto realmente pase —"
+      }
+    }
   }
 }

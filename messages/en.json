@@ -109,5 +109,42 @@
     "emailCta": "Email",
     "linkedinCta": "LinkedIn",
     "resumeCta": "Resume (PDF)"
+  },
+  "shell": {
+    "openLabel": "Open terminal",
+    "hintText": "Try the terminal →",
+    "closeLabel": "Close",
+    "closeHint": "Esc",
+    "inputPlaceholder": "Type a command…",
+    "welcomeOutput": "Mauricio Rodríguez Carballo — Software Engineer.",
+    "welcomeHint": "Type \"help\" or click a command below.",
+    "jumpCta": "→ view this section",
+    "commandNotFound": "command not found: {command}. Type \"help\" to see available commands.",
+    "commands": {
+      "help": {
+        "output": "Available commands:"
+      },
+      "whoami": {
+        "output": "Math taught me to see problems as puzzles. Code taught me to solve them. Now I'm teaching an AI to join in."
+      },
+      "work": {
+        "output": "Three real engineering decisions: caching under traffic spikes, a CI/CD pipeline, and tool-calling orchestration for a local AI agent."
+      },
+      "stack": {
+        "output": "What I reach for by default:"
+      },
+      "playground": {
+        "output": "The AI agent's tool-calling pattern, live — edit the code, change the input, run it in your browser."
+      },
+      "puzzle": {
+        "output": "Draw a wall, drag the markers, watch A* find a way around it."
+      },
+      "audit": {
+        "output": "Real Lighthouse scores against a production build, not a badge I made up:"
+      },
+      "sudoHireMe": {
+        "output": "Permission granted. Redirecting you to the fastest way to actually make that happen —"
+      }
+    }
   }
 }
