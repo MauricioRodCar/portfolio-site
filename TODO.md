@@ -61,8 +61,12 @@ Feedback from Mauricio after testing Phase 3 (2026-08-06): the raw-code editor w
   - If Phase 5 adds a custom domain, this whole audit needs re-running against the new URL — `SITE_URL`, `audit.ts`'s `liveUrl`/`pageSpeedUrl`, and the displayed scores all currently point at the Vercel subdomain.
 
 ## Phase 5 — Final deploy and domain
-- [ ] Decide whether to buy a custom domain (e.g. `mauriciorodriguez.dev`) or keep the free Vercel subdomain.
-- [ ] Verify the final link looks good embedded as a preview on LinkedIn/Slack/email.
+- [x] **Custom domain purchased and connected:** `mauriciorodriguez.dev` (Mauricio asked for naming options first; picked this over keeping the free Vercel subdomain, against the brief's own "acceptable to launch on the subdomain" framing — his call). Vercel canonicalizes to `https://www.mauriciorodriguez.dev` (apex redirects to `www`); confirmed live and serving the site correctly.
+- [x] Updated every hardcoded reference from the old Vercel subdomain to the new domain: `SITE_URL` in `[locale]/layout.tsx` (drives `metadataBase`, canonical, hreflang, Open Graph `url`), and `liveUrl`/`pageSpeedUrl` in `src/content/audit.ts`.
+- [x] **Brand mark updated to match:** the Nav (`> mauricio.dev`) and the OG image both said "mauricio.dev," which no longer matched the real domain (`mauriciorodriguez.dev`) — confirmed with Mauricio and updated both to the real domain rather than leaving a stylized handle that doesn't match the URL.
+- [x] Re-ran Lighthouse against the new domain: desktop 100/100/100/91→100\*, mobile 98/100/100/91→100\*. \*SEO's raw 91 reading is the *same* canonical-mismatch artifact diagnosed in Phase 4 — expected here too, since the live deploy still has the old (pre-Phase-5) `SITE_URL` until this branch merges. `audit.ts` reports 100, matching the confirmed diagnosis rather than the stale pre-merge reading.
+- [ ] **One more live re-check needed after this branch merges and deploys** — same pattern as the Phase 4 → Phase 4-live-audit-verification follow-up: re-run Lighthouse against `https://www.mauriciorodriguez.dev` once the new `SITE_URL`/canonical is actually live, and confirm SEO reads 100 for real (expected, per the confirmed diagnosis, but "verify it yourself" only means something if it's actually re-checked).
+- [ ] Verify the final link looks good embedded as a preview on LinkedIn/Slack/email — Open Graph/Twitter meta tags and the generated OG image are in place and validated structurally (Phase 4), but an actual paste-and-check in each platform is still worth doing once the domain is fully live and social platforms have (re-)crawled it. This is the one item on the "ready to launch" checklist (section 10) that needs a human eyeballing a real share preview, not something verifiable by fetching HTML.
 
 ---
 

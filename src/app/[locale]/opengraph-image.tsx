@@ -35,12 +35,12 @@ export default async function Image({
             display: "flex",
             alignItems: "center",
             fontSize: 28,
-            color: "#71717a",
+            color: "#a1a1aa",
             marginBottom: 28,
           }}
         >
           <span style={{ color: "#22d3ee", marginRight: 12 }}>{">"}</span>
-          mauricio.dev
+          mauriciorodriguez.dev
         </div>
         <div
           style={{

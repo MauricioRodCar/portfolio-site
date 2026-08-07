@@ -12,7 +12,7 @@ export function Nav() {
           href="#"
           className="rounded font-mono text-sm text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          <span className="text-accent">&gt;</span> mauricio.dev
+          <span className="text-accent">&gt;</span> mauriciorodriguez.dev
         </a>
         <div className="flex items-center gap-4 sm:gap-6">
           {/* Section links hide below md: on narrow viewports there isn't
