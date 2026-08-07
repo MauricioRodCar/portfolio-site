@@ -4,6 +4,7 @@
   },
   "nav": {
     "skipToContent": "Skip to content",
+    "puzzle": "Puzzle",
     "work": "How I Think",
     "playground": "Playground",
     "stack": "Stack",
@@ -35,6 +36,20 @@
       "proseIntro": "The model doesn't get to run anything. It gets to ask. This is the pattern that draws that line — and it's also the base for the playground below, simplified to run entirely in your browser.",
       "decision": "Tool-calling orchestration: the model is given a fixed catalog of named tools, its response is parsed for a structured tool call, and only the orchestrator — never the model itself — executes it."
     }
+  },
+  "maze": {
+    "heading": "Puzzle",
+    "subheading": "Draw a wall. Watch it find a way around.",
+    "intro": "This is the “math taught me to see problems as puzzles” part, made interactive. Drag to draw walls, drag the A/B markers anywhere — A* re-solves it live.",
+    "filename": "solver.ts",
+    "resetCta": "Reset",
+    "gridAriaLabel": "Interactive maze grid. Drag to draw walls, and drag the A and B markers to move the start and end points. A pathfinding algorithm animates the shortest route between them.",
+    "legendExplored": "explored",
+    "legendPath": "shortest path",
+    "legendWall": "wall",
+    "statusSolving": "solving…",
+    "statusSolved": "solved",
+    "statusUnreachable": "no path — remove a wall"
   },
   "playground": {
     "heading": "Try it yourself",

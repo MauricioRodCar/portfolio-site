@@ -20,6 +20,12 @@ export function Nav() {
               single-page layout is still fully reachable by scrolling. */}
           <div className="hidden items-center gap-6 md:flex">
             <a
+              href="#puzzle"
+              className="rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              {t("puzzle")}
+            </a>
+            <a
               href="#work"
               className="rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
