@@ -21,7 +21,7 @@ export function generateStaticParams() {
 }
 
 const SITE_NAME = "Mauricio Rodríguez Carballo";
-const SITE_URL = "https://portfolio-site-omega-ivory.vercel.app";
+const SITE_URL = "https://www.mauriciorodriguez.dev";
 
 export async function generateMetadata({
   params,
