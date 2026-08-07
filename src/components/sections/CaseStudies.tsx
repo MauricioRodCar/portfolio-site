@@ -1,9 +1,15 @@
 import { useTranslations } from "next-intl";
 import { caseStudies } from "@/content/case-studies";
+import {
+  tradingSystems,
+  SCALPER_SNIPPET,
+  RSI_SNIPPET,
+} from "@/content/case-studies/trading-systems";
 import { Card } from "@/components/ui/Card";
 import { Tag } from "@/components/ui/Tag";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { Reveal } from "@/components/ui/Reveal";
+import { TradingSystemsEvidence } from "@/components/trading/TradingSystemsEvidence";
 
 export function CaseStudies() {
   const t = useTranslations("caseStudies");
@@ -51,6 +57,46 @@ export function CaseStudies() {
             </Card>
           </Reveal>
         ))}
+        <Reveal delay={caseStudies.length * 0.1}>
+          <Card className="grid gap-6 lg:grid-cols-2 lg:items-start">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xl font-semibold text-foreground">
+                {t(`${tradingSystems.slug}.title`)}
+              </h3>
+              <p className="text-sm text-muted">
+                {t(`${tradingSystems.slug}.context`)}
+              </p>
+              <p className="text-sm text-foreground">
+                {t(`${tradingSystems.slug}.proseIntro`)}
+              </p>
+              <p className="text-sm text-muted">
+                <span className="text-accent">{t("decisionLabel")} </span>
+                {t(`${tradingSystems.slug}.decision`)}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {tradingSystems.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </div>
+            </div>
+            <TradingSystemsEvidence
+              scalperCode={
+                <CodeBlock
+                  code={SCALPER_SNIPPET.code}
+                  lang={SCALPER_SNIPPET.lang}
+                  filename={SCALPER_SNIPPET.filename}
+                />
+              }
+              rsiCode={
+                <CodeBlock
+                  code={RSI_SNIPPET.code}
+                  lang={RSI_SNIPPET.lang}
+                  filename={RSI_SNIPPET.filename}
+                />
+              }
+            />
+          </Card>
+        </Reveal>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { ToggleGroup } from "@/components/ui/ToggleGroup";
 import { StackList } from "./StackList";
 import { StackConstellation } from "./StackConstellation";
 
@@ -13,36 +14,16 @@ export function StackView() {
 
   return (
     <div>
-      <div
-        role="radiogroup"
-        aria-label={t("viewToggleAriaLabel")}
-        className="mb-6 inline-flex rounded-md border border-border p-0.5 font-mono text-xs uppercase tracking-wide"
-      >
-        <button
-          role="radio"
-          aria-checked={view === "list"}
-          onClick={() => setView("list")}
-          className={`rounded px-3 py-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-            view === "list"
-              ? "bg-accent text-accent-foreground"
-              : "text-muted hover:text-accent"
-          }`}
-        >
-          {t("viewToggleList")}
-        </button>
-        <button
-          role="radio"
-          aria-checked={view === "constellation"}
-          onClick={() => setView("constellation")}
-          className={`rounded px-3 py-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-            view === "constellation"
-              ? "bg-accent text-accent-foreground"
-              : "text-muted hover:text-accent"
-          }`}
-        >
-          {t("viewToggleConstellation")}
-        </button>
-      </div>
+      <ToggleGroup
+        value={view}
+        onChange={setView}
+        ariaLabel={t("viewToggleAriaLabel")}
+        className="mb-6"
+        options={[
+          { value: "list", label: t("viewToggleList") },
+          { value: "constellation", label: t("viewToggleConstellation") },
+        ]}
+      />
 
       {view === "list" ? <StackList /> : <StackConstellation />}
     </div>

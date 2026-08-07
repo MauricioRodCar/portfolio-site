@@ -16,7 +16,7 @@
   },
   "caseStudies": {
     "heading": "Cómo pienso",
-    "subheading": "Tres decisiones, y el razonamiento detrás de cada una.",
+    "subheading": "Decisiones reales, y el razonamiento detrás de cada una.",
     "decisionLabel": "Decisión:",
     "traffic-optimization": {
       "title": "Optimización bajo tráfico alto",
@@ -35,6 +35,34 @@
       "context": "Un proyecto personal: un agente local que corre completamente en el dispositivo contra Ollama, y necesita actuar sobre el mundo real — revisar el clima, hacer una conversión, buscar algo — sin darle nunca al modelo acceso directo al sistema de archivos, la red, o la shell.",
       "proseIntro": "El modelo no puede ejecutar nada. Puede pedir. Este es el patrón que traza esa línea — y también es la base del playground de abajo, simplificado para correr completamente en tu navegador.",
       "decision": "Orquestación de tool-calling: al modelo se le da un catálogo fijo de herramientas con nombre, su respuesta se parsea buscando una llamada a herramienta estructurada, y solo el orquestador — nunca el modelo mismo — la ejecuta."
+    },
+    "trading-systems": {
+      "title": "Trading systems (cTrader)",
+      "context": "Dos herramientas personales para cTrader: un scalper que explota una rareza de microestructura en BTC/USD, y un indicador que combina RSI con soporte/resistencia.",
+      "proseIntro": "No es trading \"justo\" — es toxic flow. Un edge real, explotado solo como reto de lógica.",
+      "decision": "Una ventana de confirmación de dos ticks antes de apostar por la reversión, y una validación de confluencia (escalada por ATR) entre una reversión de RSI y una zona de soporte/resistencia fractal."
+    },
+    "trading": {
+      "toolToggleAriaLabel": "Herramienta",
+      "toolScalper": "Scalper",
+      "toolRsi": "Señal RSI",
+      "viewToggleAriaLabel": "Vista",
+      "viewVisual": "Visual",
+      "viewCode": "Código",
+      "scalper": {
+        "jumpLabel": "salto",
+        "entryLabel": "entrada",
+        "tpLabel": "TP",
+        "caption": "Salto de un tick más allá del spread → confirmación de dos ticks → operación de reversión al nivel previo.",
+        "replayCta": "Repetir"
+      },
+      "rsi": {
+        "entryLabel": "entrada",
+        "srLabel": "soporte",
+        "oversoldLabel": "sobreventa",
+        "caption": "El RSI cruza de vuelta sobre 30 cerca de una zona de soporte fractal — confluencia, no solo RSI.",
+        "replayCta": "Repetir"
+      }
     }
   },
   "maze": {
@@ -129,7 +157,7 @@
         "output": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora le estoy enseñando a una IA a unirse."
       },
       "work": {
-        "output": "Tres decisiones reales de ingeniería: caching bajo picos de tráfico, un pipeline de CI/CD, y orquestación de tool-calling para un agente de IA local."
+        "output": "Decisiones reales de ingeniería: caching bajo picos de tráfico, un pipeline de CI/CD, orquestación de tool-calling para un agente de IA local, y un par de herramientas de trading algorítmico."
       },
       "stack": {
         "output": "Lo que uso por defecto:"
