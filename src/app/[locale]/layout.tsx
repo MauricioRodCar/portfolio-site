@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { TerminalShell } from "@/components/shell/TerminalShell";
 import "../globals.css";
 
 const inter = Inter({
@@ -83,6 +84,7 @@ export default async function RootLayout({
             {t("skipToContent")}
           </a>
           {children}
+          <TerminalShell />
         </NextIntlClientProvider>
       </body>
     </html>
