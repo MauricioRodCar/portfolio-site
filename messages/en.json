@@ -3,9 +3,11 @@
     "description": "Math taught me to see problems as puzzles. Code taught me to solve them. Now, I’m teaching an AI to join in."
   },
   "nav": {
+    "skipToContent": "Skip to content",
     "work": "How I Think",
     "playground": "Playground",
     "stack": "Stack",
+    "audit": "Audit",
     "contact": "Contact"
   },
   "hero": {
@@ -49,6 +51,21 @@
       "iterationSpeed": "When I need iteration speed",
       "projectGrows": "When the project grows"
     }
+  },
+  "audit": {
+    "heading": "Verified, not claimed",
+    "subheading": "The performance and accessibility numbers behind this site.",
+    "intro": "This isn't a badge I made up — it's a real Lighthouse audit against a production build, and you can re-run it yourself any time.",
+    "categories": {
+      "performance": "performance",
+      "accessibility": "accessibility",
+      "bestPractices": "best practices",
+      "seo": "seo"
+    },
+    "desktopLabel": "desktop",
+    "mobileLabel": "mobile",
+    "measuredOn": "Measured",
+    "verifyCta": "Verify it yourself on PageSpeed Insights ↗"
   },
   "contact": {
     "heading": "Contact",

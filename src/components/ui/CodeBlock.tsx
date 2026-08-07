@@ -9,7 +9,7 @@ interface CodeBlockProps {
 export async function CodeBlock({ code, lang, filename }: CodeBlockProps) {
   const html = await codeToHtml(code, {
     lang,
-    theme: "github-dark",
+    theme: "github-dark-high-contrast",
   });
 
   return (
