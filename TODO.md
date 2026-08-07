@@ -124,6 +124,14 @@ Mauricio's framing: the site currently proves "I can build a site" and "I can co
 - Verified with Playwright (dev server first — the maze bug taught that lesson — then prod build): open/close via all three exits, every command including the easter egg and unknown-command error, hint tooltip timing/persistence, focus trap, mobile tap, both locales, zero console errors. Lighthouse unaffected: desktop 100/100/100/91→100\*, mobile ~95/100/100/91→100\* (\*same known localhost-canonical artifact — not a regression, per the standing Phase 4 diagnosis).
 - **Still needs a live re-check after this merges and deploys**, same as every prior feature — the SEO number in particular should read 100 directly once the canonical is live rather than needing the diagnosis-based correction.
 
+### Terminal button visibility fix (branch `polish-terminal-button-visibility`)
+Mauricio's feedback after using the shipped shell: the floating button's `border-border` outline was close enough to the near-black background to blend in, and felt too small specifically on wide/high-res desktop viewports — mobile already looked right and wasn't touched.
+- [x] Border changed to `border-accent/70` (cyan) — the core "blends into the background" fix, since the old border color was a muted gray close to the page background rather than an actual accent.
+- [x] Added a soft pulsing glow halo behind the button (`bg-accent/40 blur-md animate-pulse`, `motion-reduce:animate-none`) — same technique already used for the constellation's primary nodes, so it's a reused pattern rather than a new visual language. Calm/slow, not an attention-grabbing flash.
+- [x] Bigger only at `sm:` and up (more padding, larger text/cursor) — mobile (`< 640px`) renders identically to before, per Mauricio's explicit "mobile ya se ve perfecto, no lo toques."
+- [x] Added a "terminal" text label, visible only at `sm:` and up (new `shell.buttonLabel` translation) — more affordance and visual mass on desktop; mobile stays icon-only.
+- Verified with Playwright at 1920×1080, 1280×900, and 390×844: button measures 126×46 on desktop (was ~76×36) vs. an unchanged 44×38 on mobile; open/close, focus trap, and all commands still work; Lighthouse unaffected.
+
 ---
 
 ## Open decisions not blocking progress
