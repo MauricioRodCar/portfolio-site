@@ -4,15 +4,14 @@ export interface AuditCategoryResult {
   mobile: number;
 }
 
-// Measured with Lighthouse directly against the live production URL,
-// desktop and mobile presets. Mobile performance's LCP contribution is
-// Lighthouse's simulated-4G/4x-CPU figure (~2.3s) — the real observed LCP
-// on the live deploy is ~510ms; the simulated one is reported here because
-// it's what the linked PageSpeed Insights check will also show. SEO is
-// 100 based on the confirmed Phase 4 diagnosis (a canonical/audited-origin
-// mismatch, not a real defect) — same underlying app, same Vercel edge
-// infra, just a new domain still propagating at measurement time. See
-// TODO.md Phase 5 decision log; still due one more live re-check post-merge.
+// Measured with Lighthouse directly against the live production URL
+// (mauriciorodriguez.dev), desktop and mobile presets — confirmed after
+// deploy on 2026-08-07, canonical now correctly self-referential (SEO 100
+// confirmed for real, not just predicted). Mobile performance's LCP
+// contribution is Lighthouse's simulated-4G/4x-CPU figure (~2.3s) — the
+// real observed LCP on the live deploy is ~510ms; the simulated one is
+// reported here because it's what the linked PageSpeed Insights check
+// will also show. See TODO.md Phase 5 decision log.
 export const auditResults: AuditCategoryResult[] = [
   { key: "performance", desktop: 100, mobile: 98 },
   { key: "accessibility", desktop: 100, mobile: 100 },
