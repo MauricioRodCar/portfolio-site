@@ -93,7 +93,7 @@ export function Stack() {
         <div className="mt-4 flex flex-col gap-3">
           {secondaryGroups.map((group) => (
             <div key={group.key}>
-              <p className="font-mono text-xs uppercase tracking-wide text-muted">
+              <p className="font-mono text-xs font-semibold uppercase tracking-wide text-accent">
                 {t(`secondaryGroups.${group.key}`)}
               </p>
               <p className="mt-1 text-sm text-muted">

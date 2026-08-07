@@ -81,14 +81,18 @@ Mauricio asked (2026-08-06/07) for ideas on what would raise the portfolio's lev
 8. Keyboard-shortcut/command-palette easter egg. **Still not done, lower priority — polish, not substance.**
 9. Exposing a Web MCP–compatible interface — Lighthouse now audits for this too; boldest/most on-theme idea given the AI-agent project, but the tech is new/unstable. **Deferred, not scheduled — explore later.**
 
-### Stack section redesign (in progress, branch `refine-stack-section`)
+### Stack section redesign (merged, branch `refine-stack-section`)
 Mauricio's own feedback: the Stack section looked too plain, clashed with the terminal aesthetic established everywhere else (Playground, Audit), and made his real skill set look thin.
 - [x] Read `public/MauricioRodriguez_Resume.pdf` directly to ground every technology listed in something real — never invented stack items.
 - [x] Found Tailwind CSS and PostgreSQL (the two "primary tier" items) weren't actually verifiable against the CV. Asked Mauricio: keep them (real but undocumented) or swap for CV-verified tech. **He chose to swap** — primary tier is now `React / TypeScript / Styled Components` ("iteration speed") and `Node.js / Express / NestJS / MongoDB` ("project grows"), both fully grounded in his resume.
 - [x] Redesigned the primary tier as a terminal-window card (dots + `toolkit.json` label + `$ cat` prompt + `//`-comment group labels) to match the visual language already established by `CodeBlock`/`Playground`/`Audit` — this was the actual "desentona" (clashes) fix.
 - [x] Added a second tier, "Also in the toolkit," pulled from his CV's own "SUGGESTED TECH STACK" list plus verified experience-bullet tech (26 items across Octopy/EPAM/STX Next), grouped into Frontend / Backend, CMS & data / Cloud & DevOps / Tooling & testing. Rendered as de-emphasized flowing text (`·`-separated, no pills) rather than `Tag` components — visual hierarchy communicates "secondary/available if needed" without needing a disclaimer sentence to do all the work, per Mauricio's explicit framing ("no como tech stack recomendado... en caso de ser requerido").
 - [x] Verified with Playwright: no console errors, no mobile horizontal overflow, both locales render correctly.
-- [ ] Not yet merged/pushed — pending Mauricio's review of the visual result.
+
+### Post-merge bug fixes (branch `fix-nav-brand-and-stack-hierarchy`)
+Two issues Mauricio caught after using the site for real:
+- [x] **Nav brand mark wrapped mid-domain on common mobile widths (320–375px)** — `mauriciorodriguez.dev` broke onto a second line, leaving a lone `>` above it. Root cause: no `whitespace-nowrap`, so the flex layout wrapped the text instead of overflowing. Fixed with `whitespace-nowrap` + smaller font at the base breakpoint (`text-[11px] sm:text-sm`) + tighter nav padding/gaps on mobile, plus a `min-w-0 truncate` safety net in case an even narrower viewport shows up in practice. Verified with Playwright across 320/360/375/390/414px: single line, no wrap, no horizontal page overflow at any of them (320px briefly regressed into overflow mid-fix — caught and fixed in the same pass, not shipped broken).
+- [x] **Stack's secondary-tier category labels (FRONTEND, BACKEND & CMS, etc.) were indistinguishable from the tech list below them** — same color (`text-muted`), similar size, so the grouping "got lost" per Mauricio. Fixed by making the labels `text-accent font-semibold` (matching the accent-as-structural-label convention already used for headings and the primary tier's `//` comments) while keeping the tech list itself muted — the hierarchy now reads from color/weight alone.
 
 ---
 
