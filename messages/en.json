@@ -112,6 +112,7 @@
   },
   "shell": {
     "openLabel": "Open terminal",
+    "buttonLabel": "terminal",
     "hintText": "Try the terminal →",
     "closeLabel": "Close",
     "closeHint": "Esc",

@@ -103,15 +103,29 @@ export function TerminalShell() {
 
   return (
     <>
-      <button
-        ref={buttonRef}
-        onClick={handleOpen}
-        aria-label={t("openLabel")}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-1.5 rounded-md border border-border bg-background/90 px-3 py-2 font-mono text-sm text-foreground shadow-lg backdrop-blur transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        <span className="text-accent">&gt;</span>
-        <span className="animate-blink inline-block h-4 w-[2px] bg-accent" />
-      </button>
+      <div className="fixed bottom-6 right-6 z-40">
+        {/* Soft pulsing halo — the button previously blended into the dark
+            background (muted border, small footprint on wide desktop
+            viewports); this plus the accent border give it enough visual
+            weight to notice without any motion louder than the cursor
+            blink already used elsewhere. */}
+        <span
+          aria-hidden="true"
+          className="motion-reduce:animate-none pointer-events-none absolute inset-0 -z-10 animate-pulse rounded-md bg-accent/40 blur-md"
+        />
+        <button
+          ref={buttonRef}
+          onClick={handleOpen}
+          aria-label={t("openLabel")}
+          className="relative flex items-center gap-2 rounded-md border border-accent/70 bg-background px-3 py-2 font-mono text-sm text-foreground shadow-lg backdrop-blur transition-colors hover:border-accent hover:bg-foreground/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-base"
+        >
+          <span className="text-accent">&gt;</span>
+          <span className="animate-blink inline-block h-4 w-[2px] bg-accent sm:h-5" />
+          <span className="hidden font-mono text-xs uppercase tracking-wide text-muted sm:inline">
+            {t("buttonLabel")}
+          </span>
+        </button>
+      </div>
 
       {showHint && (
         <div className="fixed bottom-20 right-6 z-40 rounded-md border border-border bg-background px-3 py-2 font-mono text-xs text-muted shadow-lg">
