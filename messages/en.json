@@ -48,8 +48,16 @@
   "stack": {
     "heading": "Stack",
     "groups": {
-      "iterationSpeed": "When I need iteration speed",
-      "projectGrows": "When the project grows"
+      "iterationSpeed": "when I need iteration speed",
+      "projectGrows": "when the project grows"
+    },
+    "alsoTitle": "Also in the toolkit",
+    "alsoIntro": "Shipped production code with these too — not my default reach, but ready if a project needs them.",
+    "secondaryGroups": {
+      "frontend": "Frontend",
+      "backend": "Backend, CMS & data",
+      "cloud": "Cloud & DevOps",
+      "tooling": "Tooling & testing"
     }
   },
   "audit": {

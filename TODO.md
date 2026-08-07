@@ -14,7 +14,7 @@ Living log of deferred decisions and pending work. Updated any time something fa
 
 ## Phase 2 — Static content
 - [x] `src/content/case-studies/`: all 3 case studies written (section 6.2) — optimization under high traffic, multi-repo/DevOps, AI agent with Ollama. All 3 done now rather than just the first 2, per Mauricio's call — avoids leaving the site in a half-finished state between phases. Snippets written from scratch following the brief's technical specs, no real client code (NDA).
-- [x] Stack section (6.4): used the brief's own example groupings ("iteration speed" → React/TS/Tailwind, "when the project grows" → Node/Express/NestJS/Postgres) as final copy, per Mauricio's call.
+- [x] ~~Stack section (6.4): used the brief's own example groupings ("iteration speed" → React/TS/Tailwind, "when the project grows" → Node/Express/NestJS/Postgres) as final copy, per Mauricio's call.~~ **Superseded** — see "Post-launch refinements" below; Tailwind/Postgres weren't actually verifiable against Mauricio's CV and were swapped for CV-accurate tech once he asked for a real redesign.
 - [x] Contact section (6.5): email (`contact.mauricio.rodriguez@gmail.com`), LinkedIn, and CV PDF link (`/MauricioRodriguez_Resume.pdf`) — all real, provided by Mauricio.
 - [x] Code snippets get real server-rendered syntax highlighting (shiki) with line numbers, per section 5 — no client JS shipped for it, keeps the performance budget intact.
 - [x] Scroll-triggered fade/slide-in animations (Framer Motion) via a shared `Reveal` client wrapper.
@@ -67,6 +67,28 @@ Feedback from Mauricio after testing Phase 3 (2026-08-06): the raw-code editor w
 - [x] Re-ran Lighthouse against the new domain: desktop 100/100/100/91→100\*, mobile 98/100/100/91→100\*. \*SEO's raw 91 reading is the *same* canonical-mismatch artifact diagnosed in Phase 4 — expected here too, since the live deploy still has the old (pre-Phase-5) `SITE_URL` until this branch merges. `audit.ts` reports 100, matching the confirmed diagnosis rather than the stale pre-merge reading.
 - [x] **Live re-check done (2026-08-07):** confirmed `SITE_URL`/canonical is live and self-referential on `https://www.mauriciorodriguez.dev`. Re-ran Lighthouse for real: desktop 100/100/100/100, mobile 98/100/100/100 — SEO's 100 is now a direct measurement, not a diagnosis-based prediction. `audit.ts` comment updated accordingly.
 - [ ] Verify the final link looks good embedded as a preview on LinkedIn/Slack/email — Open Graph/Twitter meta tags and the generated OG image are in place and validated structurally (Phase 4), but an actual paste-and-check in each platform is still worth doing once the domain is fully live and social platforms have (re-)crawled it. This is the one item on the "ready to launch" checklist (section 10) that needs a human eyeballing a real share preview, not something verifiable by fetching HTML.
+
+## Post-launch refinements (the 5-phase roadmap is done; this tracks work after it)
+
+Mauricio asked (2026-08-06/07) for ideas on what would raise the portfolio's level as a software-engineer portfolio specifically, beyond the original brief. Claude's prioritized suggestions, ranked by impact/effort for the "get hired" goal:
+1. Real GitHub link in Contact/Nav (currently missing — notable gap for a dev portfolio).
+2. `@vercel/analytics` package + `<Analytics />` component — Mauricio already enabled Web Analytics from the Vercel dashboard (works via auto-injected script, no code needed), but installing the package is more reliable/CSP-friendly and is a ~5-minute addition. **Still not done** — low priority, not blocking.
+3. `llms.txt` — Lighthouse now audits for it; thematically on-brand for an AI-agent-focused candidate. **Still not done.**
+4. A subtle "open to work" / availability indicator. **Still not done.**
+5. Real GitHub activity/pinned-repos widget (could include this portfolio's own repo as a live example of AI-assisted engineering). **Still not done.**
+6. Verified LinkedIn recommendations (linked back for verification, same "verified not claimed" spirit as the Audit section). **Still not done.**
+7. Quantified/generalized impact metrics in case studies (orders of magnitude, not real client numbers). **Still not done.**
+8. Keyboard-shortcut/command-palette easter egg. **Still not done, lower priority — polish, not substance.**
+9. Exposing a Web MCP–compatible interface — Lighthouse now audits for this too; boldest/most on-theme idea given the AI-agent project, but the tech is new/unstable. **Deferred, not scheduled — explore later.**
+
+### Stack section redesign (in progress, branch `refine-stack-section`)
+Mauricio's own feedback: the Stack section looked too plain, clashed with the terminal aesthetic established everywhere else (Playground, Audit), and made his real skill set look thin.
+- [x] Read `public/MauricioRodriguez_Resume.pdf` directly to ground every technology listed in something real — never invented stack items.
+- [x] Found Tailwind CSS and PostgreSQL (the two "primary tier" items) weren't actually verifiable against the CV. Asked Mauricio: keep them (real but undocumented) or swap for CV-verified tech. **He chose to swap** — primary tier is now `React / TypeScript / Styled Components` ("iteration speed") and `Node.js / Express / NestJS / MongoDB` ("project grows"), both fully grounded in his resume.
+- [x] Redesigned the primary tier as a terminal-window card (dots + `toolkit.json` label + `$ cat` prompt + `//`-comment group labels) to match the visual language already established by `CodeBlock`/`Playground`/`Audit` — this was the actual "desentona" (clashes) fix.
+- [x] Added a second tier, "Also in the toolkit," pulled from his CV's own "SUGGESTED TECH STACK" list plus verified experience-bullet tech (26 items across Octopy/EPAM/STX Next), grouped into Frontend / Backend, CMS & data / Cloud & DevOps / Tooling & testing. Rendered as de-emphasized flowing text (`·`-separated, no pills) rather than `Tag` components — visual hierarchy communicates "secondary/available if needed" without needing a disclaimer sentence to do all the work, per Mauricio's explicit framing ("no como tech stack recomendado... en caso de ser requerido").
+- [x] Verified with Playwright: no console errors, no mobile horizontal overflow, both locales render correctly.
+- [ ] Not yet merged/pushed — pending Mauricio's review of the visual result.
 
 ---
 
