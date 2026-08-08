@@ -24,7 +24,7 @@ export function TradingSystemsEvidence({
   const [view, setView] = useState<View>("visual");
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <ToggleGroup
           value={tool}
