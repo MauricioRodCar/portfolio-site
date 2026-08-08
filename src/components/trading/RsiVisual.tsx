@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useInViewOnce } from "./useInViewOnce";
+import { useInViewOnce } from "@/components/ui/useInViewOnce";
 
 interface Point {
   x: number;
@@ -49,6 +49,7 @@ function toPolyline(points: Point[]) {
 
 export function RsiVisual() {
   const t = useTranslations("caseStudies.trading.rsi");
+  const tEvidence = useTranslations("caseStudies.evidence");
   const { ref, inView } = useInViewOnce<HTMLDivElement>();
   const [step, setStep] = useState(0);
   const timerRef = useRef<number | null>(null);
@@ -165,7 +166,7 @@ export function RsiVisual() {
           onClick={play}
           className="shrink-0 rounded font-mono text-xs uppercase tracking-wide text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          {t("replayCta")}
+          {tEvidence("replayCta")}
         </button>
       </div>
     </div>

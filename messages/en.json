@@ -42,27 +42,49 @@
       "proseIntro": "Not \"fair\" trading — toxic flow. A real edge, exploited purely as a logic problem.",
       "decision": "A two-tick confirmation window before betting on reversion, and an ATR-scaled confluence check between an RSI reversal and a fractal S/R zone."
     },
+    "evidence": {
+      "viewToggleAriaLabel": "View",
+      "viewVisual": "Visual",
+      "viewCode": "Code",
+      "replayCta": "Replay"
+    },
     "trading": {
       "toolToggleAriaLabel": "Tool",
       "toolScalper": "Scalper",
       "toolRsi": "RSI Signal",
-      "viewToggleAriaLabel": "View",
-      "viewVisual": "Visual",
-      "viewCode": "Code",
       "scalper": {
         "jumpLabel": "jump",
         "entryLabel": "entry",
         "tpLabel": "TP",
-        "caption": "One-tick jump beyond spread → two-tick confirmation → reversion trade back to the pre-jump level.",
-        "replayCta": "Replay"
+        "caption": "One-tick jump beyond spread → two-tick confirmation → reversion trade back to the pre-jump level."
       },
       "rsi": {
         "entryLabel": "entry",
         "srLabel": "support",
         "oversoldLabel": "oversold",
-        "caption": "RSI crosses back above 30 near a fractal support zone — confluence, not RSI alone.",
-        "replayCta": "Replay"
+        "caption": "RSI crosses back above 30 near a fractal support zone — confluence, not RSI alone."
       }
+    },
+    "traffic": {
+      "requestsLabel": "requests",
+      "cacheLabel": "cache",
+      "backendLabel": "backend",
+      "missLabel": "cache miss → fetch",
+      "staleLabel": "stale threshold",
+      "revalidateLabel": "revalidate (background)",
+      "caption": "Concurrent requests dedupe into one backend call; a later one gets instant stale data while it revalidates in the background."
+    },
+    "pipeline": {
+      "lintLabel": "Lint",
+      "testLabel": "Test",
+      "buildLabel": "Build",
+      "qaLabel": "Deploy: QA",
+      "qaBranchLabel": "develop",
+      "prodLabel": "Deploy: Prod",
+      "prodBranchLabel": "main",
+      "approvalLabel": "pending",
+      "approvedLabel": "approved",
+      "caption": "Same gates for every branch — production is the only one that waits for a human."
     }
   },
   "maze": {

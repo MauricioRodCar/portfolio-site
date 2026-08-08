@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { useTranslations } from "next-intl";
 import { caseStudies } from "@/content/case-studies";
 import {
@@ -10,6 +11,14 @@ import { Tag } from "@/components/ui/Tag";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { Reveal } from "@/components/ui/Reveal";
 import { TradingSystemsEvidence } from "@/components/trading/TradingSystemsEvidence";
+import { CaseStudyEvidence } from "@/components/case-visuals/CaseStudyEvidence";
+import { TrafficVisual } from "@/components/case-visuals/TrafficVisual";
+import { PipelineVisual } from "@/components/case-visuals/PipelineVisual";
+
+const VISUALS: Record<string, ComponentType> = {
+  "traffic-optimization": TrafficVisual,
+  "devops-pipeline": PipelineVisual,
+};
 
 export function CaseStudies() {
   const t = useTranslations("caseStudies");
@@ -26,37 +35,43 @@ export function CaseStudies() {
       </Reveal>
 
       <div className="mt-12 flex flex-col gap-16">
-        {caseStudies.map((study, i) => (
-          <Reveal key={study.slug} delay={i * 0.1}>
-            <Card className="grid gap-6 lg:grid-cols-2 lg:items-start">
-              <div className="flex flex-col gap-4">
-                <h3 className="text-xl font-semibold text-foreground">
-                  {t(`${study.slug}.title`)}
-                </h3>
-                <p className="text-sm text-muted">
-                  {t(`${study.slug}.context`)}
-                </p>
-                <p className="text-sm text-foreground">
-                  {t(`${study.slug}.proseIntro`)}
-                </p>
-                <p className="text-sm text-muted">
-                  <span className="text-accent">{t("decisionLabel")} </span>
-                  {t(`${study.slug}.decision`)}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {study.tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
+        {caseStudies.map((study, i) => {
+          const Visual = VISUALS[study.slug];
+          const code = (
+            <CodeBlock code={study.code} lang={study.lang} filename={study.filename} />
+          );
+          return (
+            <Reveal key={study.slug} delay={i * 0.1}>
+              <Card className="grid gap-6 lg:grid-cols-2 lg:items-start">
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {t(`${study.slug}.title`)}
+                  </h3>
+                  <p className="text-sm text-muted">
+                    {t(`${study.slug}.context`)}
+                  </p>
+                  <p className="text-sm text-foreground">
+                    {t(`${study.slug}.proseIntro`)}
+                  </p>
+                  <p className="text-sm text-muted">
+                    <span className="text-accent">{t("decisionLabel")} </span>
+                    {t(`${study.slug}.decision`)}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {study.tags.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <CodeBlock
-                code={study.code}
-                lang={study.lang}
-                filename={study.filename}
-              />
-            </Card>
-          </Reveal>
-        ))}
+                {Visual ? (
+                  <CaseStudyEvidence visual={<Visual />} code={code} />
+                ) : (
+                  code
+                )}
+              </Card>
+            </Reveal>
+          );
+        })}
         <Reveal delay={caseStudies.length * 0.1}>
           <Card className="grid gap-6 lg:grid-cols-2 lg:items-start">
             <div className="flex flex-col gap-4">

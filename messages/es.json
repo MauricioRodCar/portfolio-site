@@ -42,27 +42,49 @@
       "proseIntro": "No es trading \"justo\" — es toxic flow. Un edge real, explotado solo como reto de lógica.",
       "decision": "Una ventana de confirmación de dos ticks antes de apostar por la reversión, y una validación de confluencia (escalada por ATR) entre una reversión de RSI y una zona de soporte/resistencia fractal."
     },
+    "evidence": {
+      "viewToggleAriaLabel": "Vista",
+      "viewVisual": "Visual",
+      "viewCode": "Código",
+      "replayCta": "Repetir"
+    },
     "trading": {
       "toolToggleAriaLabel": "Herramienta",
       "toolScalper": "Scalper",
       "toolRsi": "Señal RSI",
-      "viewToggleAriaLabel": "Vista",
-      "viewVisual": "Visual",
-      "viewCode": "Código",
       "scalper": {
         "jumpLabel": "salto",
         "entryLabel": "entrada",
         "tpLabel": "TP",
-        "caption": "Salto de un tick más allá del spread → confirmación de dos ticks → operación de reversión al nivel previo.",
-        "replayCta": "Repetir"
+        "caption": "Salto de un tick más allá del spread → confirmación de dos ticks → operación de reversión al nivel previo."
       },
       "rsi": {
         "entryLabel": "entrada",
         "srLabel": "soporte",
         "oversoldLabel": "sobreventa",
-        "caption": "El RSI cruza de vuelta sobre 30 cerca de una zona de soporte fractal — confluencia, no solo RSI.",
-        "replayCta": "Repetir"
+        "caption": "El RSI cruza de vuelta sobre 30 cerca de una zona de soporte fractal — confluencia, no solo RSI."
       }
+    },
+    "traffic": {
+      "requestsLabel": "requests",
+      "cacheLabel": "caché",
+      "backendLabel": "backend",
+      "missLabel": "cache miss → fetch",
+      "staleLabel": "umbral stale",
+      "revalidateLabel": "revalidación (background)",
+      "caption": "Los requests concurrentes se deduplican en una sola llamada al backend; uno posterior recibe datos stale al instante mientras se revalida en segundo plano."
+    },
+    "pipeline": {
+      "lintLabel": "Lint",
+      "testLabel": "Test",
+      "buildLabel": "Build",
+      "qaLabel": "Deploy: QA",
+      "qaBranchLabel": "develop",
+      "prodLabel": "Deploy: Prod",
+      "prodBranchLabel": "main",
+      "approvalLabel": "pendiente",
+      "approvedLabel": "aprobado",
+      "caption": "Los mismos gates para toda rama — producción es la única que espera a una persona."
     }
   },
   "maze": {
