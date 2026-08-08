@@ -16,7 +16,7 @@
   },
   "caseStudies": {
     "heading": "How I think",
-    "subheading": "Three decisions, and the reasoning behind each one.",
+    "subheading": "Real decisions, and the reasoning behind each one.",
     "decisionLabel": "Decision:",
     "traffic-optimization": {
       "title": "Optimization under high traffic",
@@ -35,6 +35,34 @@
       "context": "A personal project: a local agent that runs entirely on-device against Ollama, and needs to act on the real world — check the weather, do a conversion, look something up — without ever giving the model direct access to the filesystem, network, or shell.",
       "proseIntro": "The model doesn't get to run anything. It gets to ask. This is the pattern that draws that line — and it's also the base for the playground below, simplified to run entirely in your browser.",
       "decision": "Tool-calling orchestration: the model is given a fixed catalog of named tools, its response is parsed for a structured tool call, and only the orchestrator — never the model itself — executes it."
+    },
+    "trading-systems": {
+      "title": "Trading systems (cTrader)",
+      "context": "Two personal cTrader tools: a scalper exploiting a microstructure quirk in BTC/USD, and a signal indicator combining RSI with support/resistance.",
+      "proseIntro": "Not \"fair\" trading — toxic flow. A real edge, exploited purely as a logic problem.",
+      "decision": "A two-tick confirmation window before betting on reversion, and an ATR-scaled confluence check between an RSI reversal and a fractal S/R zone."
+    },
+    "trading": {
+      "toolToggleAriaLabel": "Tool",
+      "toolScalper": "Scalper",
+      "toolRsi": "RSI Signal",
+      "viewToggleAriaLabel": "View",
+      "viewVisual": "Visual",
+      "viewCode": "Code",
+      "scalper": {
+        "jumpLabel": "jump",
+        "entryLabel": "entry",
+        "tpLabel": "TP",
+        "caption": "One-tick jump beyond spread → two-tick confirmation → reversion trade back to the pre-jump level.",
+        "replayCta": "Replay"
+      },
+      "rsi": {
+        "entryLabel": "entry",
+        "srLabel": "support",
+        "oversoldLabel": "oversold",
+        "caption": "RSI crosses back above 30 near a fractal support zone — confluence, not RSI alone.",
+        "replayCta": "Replay"
+      }
     }
   },
   "maze": {
@@ -129,7 +157,7 @@
         "output": "Math taught me to see problems as puzzles. Code taught me to solve them. Now I'm teaching an AI to join in."
       },
       "work": {
-        "output": "Three real engineering decisions: caching under traffic spikes, a CI/CD pipeline, and tool-calling orchestration for a local AI agent."
+        "output": "Real engineering decisions: caching under traffic spikes, a CI/CD pipeline, tool-calling orchestration for a local AI agent, and a couple of algorithmic trading tools."
       },
       "stack": {
         "output": "What I reach for by default:"
