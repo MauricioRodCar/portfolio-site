@@ -16,7 +16,7 @@ export function CaseStudyEvidence({ visual, code }: CaseStudyEvidenceProps) {
   const [view, setView] = useState<View>("visual");
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="mb-3 flex justify-end">
         <ToggleGroup
           value={view}
