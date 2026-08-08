@@ -19,6 +19,7 @@ export function TradingSystemsEvidence({
   rsiCode,
 }: TradingSystemsEvidenceProps) {
   const t = useTranslations("caseStudies.trading");
+  const tEvidence = useTranslations("caseStudies.evidence");
   const [tool, setTool] = useState<Tool>("scalper");
   const [view, setView] = useState<View>("visual");
 
@@ -37,10 +38,10 @@ export function TradingSystemsEvidence({
         <ToggleGroup
           value={view}
           onChange={setView}
-          ariaLabel={t("viewToggleAriaLabel")}
+          ariaLabel={tEvidence("viewToggleAriaLabel")}
           options={[
-            { value: "visual", label: t("viewVisual") },
-            { value: "code", label: t("viewCode") },
+            { value: "visual", label: tEvidence("viewVisual") },
+            { value: "code", label: tEvidence("viewCode") },
           ]}
         />
       </div>
