@@ -4,6 +4,7 @@
   },
   "nav": {
     "skipToContent": "Saltar al contenido",
+    "shipped": "Lanzado",
     "puzzle": "Rompecabezas",
     "work": "Cómo pienso",
     "playground": "Playground",
@@ -13,6 +14,53 @@
   },
   "hero": {
     "headline": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora, estoy enseñando a una <accent>IA</accent> a unirse."
+  },
+  "shipped": {
+    "heading": "Lanzado",
+    "subheading": "No es una demo. Es un producto que gente real descarga y usa.",
+    "mediaLabel": "wispkin — escritorio",
+    "mediaAlt": "Chispa, el fuego fatuo mascota de Wispkin, flotando sobre un escritorio de Windows con su globo de chat abierto, ofreciendo ordenar la carpeta de Descargas.",
+    "mediaCaption": "Chispa respondiendo en un escritorio real. El globo muestra el cerebro activo, la carpeta de trabajo y un salto a Claude Code con un clic.",
+    "status": "beta pública",
+    "tagline": "Un asistente de IA con cara, que vive en tu escritorio de Windows.",
+    "description": "Chispa flota sobre tus ventanas y reacciona a lo que hace la IA: pensando, trabajando, esperando tu permiso, terminado. Haz clic y estás conversando con Claude (con tu propia API key, capaz de editar archivos y ejecutar comandos solo con tu aprobación) o con un modelo local de Ollama que nunca sale de tu equipo. Sin cuentas, sin telemetría, con instalador que se actualiza solo.",
+    "stats": {
+      "adrs": "registros de decisiones de arquitectura",
+      "subagents": "subagentes de IA especializados",
+      "tests": "tests unitarios en CI",
+      "qaChecks": "comprobaciones de QA en la app real"
+    },
+    "downloadCta": "Descargar la beta",
+    "repoCta": "Releases y docs",
+    "sourceNote": "El repo del código es privado; los fragmentos de abajo están condensados de él.",
+    "process": {
+      "heading": "Hecho con Claude Code — dirigido, no delegado",
+      "lead": "No le pedí a una IA que “hiciera una app”. La dirigí como a un equipo: yo era dueño de la arquitectura, los contratos y la última palabra en cada cambio.",
+      "body": "Cada fase empezó con un ADR (12 en total: cerebro multiproveedor, modelo de seguridad, tope de gasto…). El trabajo se repartió entre ocho subagentes especializados con alcance y herramientas acotados: el revisor es de solo lectura y audita credenciales, IPC y permisos; QA maneja la app de Electron real, no solo la suite de tests. 381 tests unitarios frenan cada push en el CI de Windows, y la beta solo salió después de pasar 259 de 265 comprobaciones en la app real y de arreglar el único bloqueante que quedaba."
+    },
+    "decisions": {
+      "heading": "Tres decisiones que la hicieron lanzable",
+      "ariaLabel": "Decisión de ingeniería",
+      "whyLabel": "Por qué:",
+      "providers": {
+        "tab": "Cerebro",
+        "title": "Un contrato, cualquier proveedor de IA",
+        "body": "Claude (vía el Agent SDK) y Ollama implementan la misma interfaz BrainProvider y emiten los mismos eventos. Cada proveedor declara sus capacidades, y la interfaz muestra u oculta funciones según esas banderas.",
+        "why": "Quien no tiene una clave de pago puede usarlo todo en local y gratis, y añadir un backend compatible con OpenAI es un archivo nuevo: el avatar y el chat no cambian."
+      },
+      "stateMachine": {
+        "tab": "Avatar",
+        "title": "El avatar es una máquina de estados pura",
+        "body": "Un reducer acumula eventos en el estado, y una segunda función pura decide qué se dibuja, con prioridades explícitas. El tiempo es un parámetro, nunca Date.now().",
+        "why": "Doce estados visuales alimentados por tres fuentes de eventos (chat, herramientas, latidos de Claude Code) es donde se esconden los bugs de UI. Hacerla pura la convirtió en tests unitarios simples."
+      },
+      "guardrails": {
+        "tab": "Barreras",
+        "title": "Un agente que pregunta primero, y un presupuesto que no puede pasar",
+        "body": "Cada llamada a una herramienta se vuelve una promesa que solo la respuesta del usuario resuelve; si se aborta, se deniega sola. «Aprobar siempre» vale solo para la sesión, las vistas previas escapan caracteres ocultos y el tope de gasto diario se comprueba en dos procesos.",
+        "why": "Una IA que puede tocar tus archivos y gastar tu dinero tiene que ganarse la confianza por diseño: el modelo de seguridad salió de una revisión explícita, no de un parche posterior."
+      }
+    }
   },
   "caseStudies": {
     "heading": "Cómo pienso",
@@ -177,6 +225,9 @@
       },
       "whoami": {
         "output": "Las matemáticas me enseñaron a ver los problemas como rompecabezas. El código me enseñó a resolverlos. Ahora le estoy enseñando a una IA a unirse."
+      },
+      "shipped": {
+        "output": "Wispkin: un asistente de IA con cara que vive en tu escritorio de Windows. Beta pública, hecho con Claude Code."
       },
       "work": {
         "output": "Decisiones reales de ingeniería: caching bajo picos de tráfico, un pipeline de CI/CD, orquestación de tool-calling para un agente de IA local, y un par de herramientas de trading algorítmico."
