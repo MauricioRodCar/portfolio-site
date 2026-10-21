@@ -18,9 +18,9 @@
   "shipped": {
     "heading": "Lanzado",
     "subheading": "No es una demo. Es un producto que gente real descarga y usa.",
-    "mediaLabel": "wispkin — escritorio",
-    "mediaAlt": "Chispa, el fuego fatuo mascota de Wispkin, flotando sobre un escritorio de Windows con su globo de chat abierto, ofreciendo ordenar la carpeta de Descargas.",
-    "mediaCaption": "Chispa respondiendo en un escritorio real. El globo muestra el cerebro activo, la carpeta de trabajo y un salto a Claude Code con un clic.",
+    "mediaLabel": "wispkin — demo",
+    "mediaAlt": "Grabación de pantalla de Wispkin: el usuario le pregunta a Chispa quién es y luego le pide crear notas.txt con tres ideas para tomar un descanso; Chispa pide permiso para escribir el archivo, el usuario lo aprueba y confirma que quedó guardado.",
+    "mediaCaption": "Una ejecución real contra el backend de Claude: una pregunta, una tarea que escribe un archivo, la solicitud de permiso y la aprobación.",
     "status": "beta pública",
     "tagline": "Un asistente de IA con cara, que vive en tu escritorio de Windows.",
     "description": "Chispa flota sobre tus ventanas y reacciona a lo que hace la IA: pensando, trabajando, esperando tu permiso, terminado. Haz clic y estás conversando con Claude (con tu propia API key, capaz de editar archivos y ejecutar comandos solo con tu aprobación) o con un modelo local de Ollama que nunca sale de tu equipo. Sin cuentas, sin telemetría, con instalador que se actualiza solo.",
