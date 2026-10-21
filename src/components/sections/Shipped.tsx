@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { Reveal } from "@/components/ui/Reveal";
 import { ShippedDecisions } from "@/components/shipped/ShippedDecisions";
+import { ShippedVideo } from "@/components/shipped/ShippedVideo";
 import {
   wispkin,
   SHIPPED_SNIPPETS,
@@ -26,7 +26,9 @@ const SUBAGENTS = [
 
 export function Shipped() {
   const t = useTranslations("shipped");
+  const locale = useLocale();
   const { media } = wispkin;
+  const video = locale === "es" ? media.video.es : media.video.en;
 
   const code = Object.fromEntries(
     SHIPPED_SNIPPETS.map((s) => [
@@ -47,8 +49,10 @@ export function Shipped() {
       </Reveal>
 
       <Reveal delay={0.1} className="mt-12">
-        <Card className="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <figure className="min-w-0">
+        {/* Video spans the full card width: it's a 16:9 screen recording of
+            a chat UI, and at half-column width its text would be unreadable. */}
+        <Card className="grid gap-8 lg:grid-cols-2">
+          <figure className="min-w-0 lg:col-span-2">
             <div className="overflow-hidden rounded-lg border border-border">
               <div className="flex items-center gap-1.5 border-b border-border bg-foreground/[0.03] px-4 py-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-border" />
@@ -58,30 +62,13 @@ export function Shipped() {
                   {t("mediaLabel")}
                 </span>
               </div>
-              {media.video ? (
-                <video
-                  className="block h-auto w-full"
-                  src={media.video.src}
-                  poster={media.video.poster ?? media.image.src}
-                  width={media.image.width}
-                  height={media.image.height}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  aria-label={t("mediaAlt")}
-                />
-              ) : (
-                <Image
-                  src={media.image.src}
-                  alt={t("mediaAlt")}
-                  width={media.image.width}
-                  height={media.image.height}
-                  sizes="(min-width: 1024px) 460px, 100vw"
-                  className="block h-auto w-full"
-                />
-              )}
+              <ShippedVideo
+                src={video.src}
+                poster={video.poster}
+                width={media.width}
+                height={media.height}
+                label={t("mediaAlt")}
+              />
             </div>
             <figcaption className="mt-2 font-mono text-xs text-muted">
               {t("mediaCaption")}
@@ -99,8 +86,10 @@ export function Shipped() {
             <h3 className="text-2xl font-semibold text-foreground">Wispkin</h3>
             <p className="text-foreground">{t("tagline")}</p>
             <p className="text-sm text-muted">{t("description")}</p>
+          </div>
 
-            <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="flex min-w-0 flex-col justify-end gap-4">
+            <dl className="grid grid-cols-2 gap-3">
               {wispkin.stats.map((stat) => (
                 // Column-reversed so the number reads first visually while
                 // the <dt> label still precedes its value for screen readers.

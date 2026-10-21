@@ -14,15 +14,22 @@ export const wispkin = {
     download: `${RELEASES_REPO}/releases/latest`,
     repo: RELEASES_REPO,
   },
+  // One recording per locale (the app's answers are in the visitor's
+  // language). Re-encoded from the 1080p/120fps originals to 720p/30fps
+  // H.264 with faststart (~580 KB each); WebM was tested and came out larger.
   media: {
-    image: {
-      src: "/shipped/wispkin-desktop.png",
-      width: 520,
-      height: 440,
+    width: 1280,
+    height: 720,
+    video: {
+      en: {
+        src: "/shipped/wispkin-demo-en.mp4",
+        poster: "/shipped/wispkin-demo-en-poster.webp",
+      },
+      es: {
+        src: "/shipped/wispkin-demo-es.mp4",
+        poster: "/shipped/wispkin-demo-es-poster.webp",
+      },
     },
-    // Set once the demo recording exists (see TODO.md). When present, the
-    // section shows the video and keeps the screenshot as its poster frame.
-    video: null as { src: string; poster?: string } | null,
   },
   stats: [
     { key: "adrs", value: "12" },

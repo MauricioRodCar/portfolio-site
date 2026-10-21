@@ -18,9 +18,9 @@
   "shipped": {
     "heading": "Shipped",
     "subheading": "Not a demo. A product real people download and run.",
-    "mediaLabel": "wispkin — desktop",
-    "mediaAlt": "Chispa, Wispkin's will-o'-the-wisp mascot, floating on a Windows desktop with its chat bubble open, offering to organize the Downloads folder.",
-    "mediaCaption": "Chispa answering on a real desktop. The bubble shows the active brain, the working folder and a one-click jump to Claude Code.",
+    "mediaLabel": "wispkin — demo",
+    "mediaAlt": "Screen recording of Wispkin: the user asks Chispa who it is, then asks it to create notes.txt with three ideas for taking a break; Chispa asks permission to write the file, the user approves, and it confirms the file was saved.",
+    "mediaCaption": "A real run against the Claude backend: a question, a file-writing task, the permission prompt, and the approval.",
     "status": "public beta",
     "tagline": "An AI assistant with a face, living on your Windows desktop.",
     "description": "Chispa floats over your windows and reacts to what the AI is doing: thinking, working, waiting for your permission, done. Click it and you're chatting with Claude (your own API key, able to edit files and run commands only with your approval) or with a local Ollama model that never leaves your machine. No accounts, no telemetry, auto-updating installer.",
