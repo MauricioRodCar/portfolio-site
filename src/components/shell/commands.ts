@@ -3,6 +3,7 @@
 // commands rather than content, and `help` lists them in its own output.
 export const CHIP_COMMANDS = [
   "whoami",
+  "shipped",
   "work",
   "stack",
   "playground",

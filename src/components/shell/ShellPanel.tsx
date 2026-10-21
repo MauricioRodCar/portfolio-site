@@ -120,6 +120,13 @@ export function ShellPanel({ onClose }: { onClose: () => void }) {
             />
           </div>
         );
+      case "shipped":
+        return (
+          <div>
+            <p>{t("commands.shipped.output")}</p>
+            <JumpLink label={t("jumpCta")} onClick={() => jump("shipped")} />
+          </div>
+        );
       case "puzzle":
         return (
           <div>

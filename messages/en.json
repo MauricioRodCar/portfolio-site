@@ -4,6 +4,7 @@
   },
   "nav": {
     "skipToContent": "Skip to content",
+    "shipped": "Shipped",
     "puzzle": "Puzzle",
     "work": "How I Think",
     "playground": "Playground",
@@ -13,6 +14,53 @@
   },
   "hero": {
     "headline": "Math taught me to see problems as puzzles. Code taught me to solve them. Now, I’m teaching an <accent>AI</accent> to join in."
+  },
+  "shipped": {
+    "heading": "Shipped",
+    "subheading": "Not a demo. A product real people download and run.",
+    "mediaLabel": "wispkin — desktop",
+    "mediaAlt": "Chispa, Wispkin's will-o'-the-wisp mascot, floating on a Windows desktop with its chat bubble open, offering to organize the Downloads folder.",
+    "mediaCaption": "Chispa answering on a real desktop. The bubble shows the active brain, the working folder and a one-click jump to Claude Code.",
+    "status": "public beta",
+    "tagline": "An AI assistant with a face, living on your Windows desktop.",
+    "description": "Chispa floats over your windows and reacts to what the AI is doing: thinking, working, waiting for your permission, done. Click it and you're chatting with Claude (your own API key, able to edit files and run commands only with your approval) or with a local Ollama model that never leaves your machine. No accounts, no telemetry, auto-updating installer.",
+    "stats": {
+      "adrs": "architecture decision records",
+      "subagents": "specialized AI subagents",
+      "tests": "unit tests in CI",
+      "qaChecks": "QA checks on the real app"
+    },
+    "downloadCta": "Download the beta",
+    "repoCta": "Releases & docs",
+    "sourceNote": "The source repo is private; the snippets below are condensed from it.",
+    "process": {
+      "heading": "Built with Claude Code — directed, not delegated",
+      "lead": "I didn't ask an AI to “make an app”. I ran it like a team: I owned the architecture, the contracts and the final call on every change.",
+      "body": "Every phase started with an ADR (12 in total: multi-provider brain, security model, spending cap…). The work was split across eight specialized subagents with narrow scopes and tools — the reviewer is read-only and audits credentials, IPC and permissions; QA drives the real Electron app, not just the test suite. 381 unit tests gate every push on Windows CI, and the beta only shipped after 259 of 265 real-app checks passed and the one remaining blocker was fixed."
+    },
+    "decisions": {
+      "heading": "Three decisions that made it shippable",
+      "ariaLabel": "Engineering decision",
+      "whyLabel": "Why:",
+      "providers": {
+        "tab": "Brain",
+        "title": "One contract, any AI provider",
+        "body": "Claude (via the Agent SDK) and Ollama implement the same BrainProvider interface and emit identical events. Each provider declares its capabilities, and the UI shows or hides features from those flags.",
+        "why": "Users without a paid key can run fully local and free, and adding an OpenAI-compatible backend is one new file — the avatar and chat don't change."
+      },
+      "stateMachine": {
+        "tab": "Avatar",
+        "title": "The avatar is a pure state machine",
+        "body": "A reducer folds events into state, and a second pure function decides what gets drawn, by explicit priority. Time is a parameter, never Date.now().",
+        "why": "Twelve visual states fed by three event sources (chat, tools, Claude Code heartbeats) is where UI bugs hide. Making it pure turned it into plain unit tests."
+      },
+      "guardrails": {
+        "tab": "Guardrails",
+        "title": "An agent that asks first, and a budget it can't exceed",
+        "body": "Every tool call becomes a promise only the user's answer resolves; an abort auto-denies. “Always allow” is session-scoped, previews escape hidden characters, and the daily spending cap is checked in two processes.",
+        "why": "An AI that can touch your files and spend your money has to earn trust by design — the security model came out of an explicit review, not an afterthought."
+      }
+    }
   },
   "caseStudies": {
     "heading": "How I think",
@@ -177,6 +225,9 @@
       },
       "whoami": {
         "output": "Math taught me to see problems as puzzles. Code taught me to solve them. Now I'm teaching an AI to join in."
+      },
+      "shipped": {
+        "output": "Wispkin: an AI assistant with a face that lives on your Windows desktop. Public beta, built with Claude Code."
       },
       "work": {
         "output": "Real engineering decisions: caching under traffic spikes, a CI/CD pipeline, tool-calling orchestration for a local AI agent, and a couple of algorithmic trading tools."
